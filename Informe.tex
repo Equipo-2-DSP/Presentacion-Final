@@ -1,0 +1,955 @@
+\documentclass[10pt,a4paper]{IEEEtran}
+\usepackage[latin1]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{subcaption} 
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage[usenames]{color}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{mwe}
+
+\author{}
+\title{Proyecto integrador DSP \\ Filtrado de ruido con transformada de wavelet}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Objetivos}
+\begin{itemize}
+\item Explicar los conceptos teóricos de la transformada wavelet.
+\item Filtrar ruido de una imagen.
+\item Comparar los resultados para los diferentes algoritmos de umbrales y familias de wavelets.
+\item Comparar el filtrado por transformada de wavelet con otros métodos de filtrado de imágenes.
+\end{itemize}
+
+\section{Introducción}
+En el siguiente informe estudiaremos los conceptos de las funciones wavelets, transformada de wavelet, y cómo utilizarlos para filtrar ruido de señales unidimensionales y bidimensionales. En nuestro caso, nos centramos en imágenes (dos dimensiones). Para el filtrado de ruido se hará un estudio de los umbrales más utilizados, con el fin de poder decidir qué umbral usar para la señal o imagen que se quiera estudiar. Como adelanto, el umbral es el parámetro que decide cómo se filtrarán los coeficientes que caracterizan a la imagen. 
+
+\section{Marco teórico}
+Una \textit{Wavelet} es una ``pequeña onda'' que tiene su energía concentrada en un período de tiempo determinado, son de duración definida e irregulares, lo que les permite 
+adaptarse y converger de mejor manera a la señal que se quiere analizar.
+Las familias de estas wavelet, también conocidas como ``wavelets madres", se definen como:
+\begin{equation}
+    \label{WM}
+    \psi_{a,b}(t)= \frac{1}{\sqrt{a}} \psi \left( \frac{t-b}{a} \right) \quad a,b \in \mathbb{R} \quad ; a \not = 0. 
+\end{equation}
+Donde $a$ y $b$ son los parámetros de escala y traslación respectivamente. Se puede ver en la figura \ref{fig.a_b} como trabajan los parámetros $a$ y $b$. El parámetro $b$, asociado a la traslación, hace que la wavelet recorra a la señal $x(t)$ a través del tiempo. Mientras que el parámetro $a$, permite controlar el ancho de la wavelet.
+
+Por otro lado, la transformada de wavelet queda definida como:
+
+\begin{equation}
+C_{f} (a,b) = \int_{-\infty}^{+\infty} x(t) \overline{\psi_{a,b} (t)} dt
+\end{equation}
+
+Donde $\psi_{a,b}(t)$ es la función que se utiliza para analizar a la señal $x(t)$ que se quiera estudiar. Realizando una analogía con Fourier, el trabajo que realiza $\psi_{a,b}(t)$, es análogo al de las exponenciales complejas $e^{- j \omega t}$. El resultado de esta transformada es una familia de coeficientes  $C_{f} (a,b)$ que representan de mejor manera la señal teniendo en cuenta la wavelet madre utilizada. Es notorio que el resultado es bidimensional ya que $a$ y $b$ son parámetros independientes. Donde $a$ está relacionado con la frecuencia que posee la señal y $b$ nos brinda información del momento temporal que se analiza. En la figura \ref{t-f} podemos verlo de mejor manera, donde el gráfico superior muestra cómo cambia la frecuencia de una señal en función de la traslación $b$, en específico en $b_0$. Y el gráfico inferior muestra el resultado de la transformada, evidenciando en el tiempo $b_0$ el cambio de frecuencia.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{Fig/t_f}
+	\caption{Representación del resultado de transformada wavelet en relación a los coeficientes de traslación y escala}
+	\label{fig.a_b}
+\end{figure}
+
+Por lo tanto, el uso de wavelets nos permite realizar un análisis paulatino en tiempo y frecuencia como se mencionó anteriormente. 
+Cabe recalcar que existen diferentes tipos de wavelets madres, en la figura \ref{fig.wavelets_madres} se pueden ver las más utilizadas: 
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.5\textwidth]{Fig/Wavelets}
+	\caption{Bases ortonormales de wavelets madres más utilizadas}
+	\label{fig.wavelets_madres}
+\end{figure}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.5\textwidth]{Fig/a_b}
+	\caption{Traslación y escalamiento de una wavelet}
+	\label{fig.a_b}
+\end{figure}
+
+En este informe nos limitaremos a estudiar el caso en el que $a=2$ y $b=1$, obteniendo la siguiente expresión:
+
+\begin{equation}
+\psi_{j,k}(t) = 2^{-j/2} \psi (2^{-j}t-k)
+\end{equation}
+
+Donde las funciones $\{\psi_{j,k}\}_{\{j,k\} \in \mathbb Z }$ forman una base ortonormal de $L^2(\mathbb R)$. Con el fin de explicar este requerimiento, es necesario explicar un concepto llamado \textbf{análisis multiresolución}.
+
+\subsection{\textbf{Análisis multiresolución}}
+Un análisis multiresolución para $L^{2}(\mathbb{R})$ consiste en una secuencia de subespacios cerrados de $L^{2}(\mathbb{R})$, $\{ V_{j} \}_{j \in \mathbb{Z} }$, y una función $\phi \in V_{0}$ tal que se cumplan las siguientes condiciones:
+
+\begin{itemize}
+\item[i.] Los espacios $V_{j}$ están anidados, es decir:
+\begin{equation*}
+... \subset V_{-1} \subset V_{0} \subset V_{1} ...
+\end{equation*}
+\item[ii.] $\overline{\cup _{j\in \mathbb Z}V_j} = L^2(\mathbb R)$ y $\cap {j\in \mathbb Z}V_j = {0}$
+\item[iii.] Para todo $j \in \mathbb{Z}$, $V_{j-1}=D(V_j)$
+\item[iv.] $f \in V_0 \rightarrow T_kf \in V_o$, $\forall k \in \mathbb{Z}$
+\item[v.] $\{T_k \phi \}_{k \in \mathbb{Z}}$ es una base ortonormal de $V_0$
+\end{itemize} 
+
+
+Definimos a los espacios $V{j}$. Por otro lado, definimos a $W_j$ como el complemento ortogonal de $V_j$ en $V_{j-1}$, que permite plantear la siguiente relación:
+\begin{equation}
+\label{Central}
+V_{j-1} = V_j \oplus W_j
+\end{equation}
+
+$W_j$ es llamado conjunto de \textbf{detalle} debido a que la proyección ortogonal de la señal en este espacio son los detalles, y $V_j$ espacio de \textbf{aproximación}, ya que la proyección ortogonal de la señal sobre este espacio son las aproximaciones. Con lo cual, podemos reescribir la ecuación \ref{Central} como:
+
+\begin{equation}
+\label{NivApDet}
+A_{j-1}(t) = A_j(t) + D_j(t) 
+\end{equation} 
+
+Donde $A_j(t)$ se define de la siguiente forma:
+
+\begin{equation}
+A_j(t)=\sum_{k \in \mathbb Z} \beta _{j,k} \phi _{j,k}(t)
+\end{equation}
+
+Donde:
+
+\begin{equation}
+\label{Beta}
+\beta _{j,k}= <x(t), \phi _{j,k}(t)>= \int_\mathbb R x(t) \overline{\phi_{j,k}(t)} dt
+\end{equation}
+
+Estos coeficientes $\beta _{j,k}$ definen los promedios locales de la señal. Por otro lado, $D_j(t)$ se define a través de la siguiente expresión:
+
+\begin{equation}
+D_j(t)=\sum_{k \in \mathbb Z} \alpha _{j,k} \phi _{j,k}(t)
+\end{equation}
+
+Donde los coeficientes $\alpha _{j,k}$ se relacionan con la diferencia entre promedios locales sucesivos (fluctuaciones de la señal), y quedan definidos de la siguiente forma:
+
+\begin{equation}
+\label{Alfa}
+\alpha _{j,k}= <x(t), \phi _{j,k}(t)>= \int_\mathbb R x(t) \overline{\phi_{j,k}(t})dt
+\end{equation}
+
+
+%Discutir si poner la proposicion 1
+Para dar un cierre a la idea de multiresolución se profundiza en la ecuación \ref{Central} que es el punto más fuerte de esta técnica. Sin más preámbulos, la reescribimos de la siguiente manera:
+
+\begin{equation}
+V_J = V_K \oplus W_K \oplus ... \oplus W_{J+1}, \: J<K
+\label{eq.Vj}
+\end{equation}
+
+La ecuación \ref{eq.Vj} expresa que podemos pasar de un nivel de resolución $J$ a cualquier nivel superior sumando los sucesivos detalles de los niveles inferiores. Es decir, la aproximación mejora a medida que el nivel $J$ decrece. También observamos que cualquier nivel de resolución $V_j$ se puede expresar como:
+
+\begin{equation}
+\label{NiveDet}
+V_J = \sum_{j=J+1}^{+\infty}W_j
+\end{equation}
+
+Por lo tanto cualquier nivel es igual a la suma de sus infinitos detalles. Análogamente cualquier función puede ser expresada como una suma de infinitos detalles:
+
+\begin{equation}
+\label{NiveDet2}
+L^2(\mathbb{R})= \oplus _{j=-\infty}^{+\infty} W_j
+\end{equation}
+
+A partir de las ecuaciones \ref{NiveDet} y \ref{NiveDet2} se puede ver que:
+
+\begin{equation}
+L^2(\mathbb{R})=V_J \oplus (\oplus _{j=-\infty}^{J}W_j)
+\end{equation}
+
+Finalmente, como el espacio $V_j$ se relaciona con el espacio detalle $A_J(t)$ y el $W_j(t)$ con los espacios de detalles $D_j(t)$:
+
+\begin{equation}
+x(t) = A_J(t) + \sum_{j=-\infty}^{J}D_j(t)
+\end{equation}
+
+Por lo tanto, podemos definir a cualquier señal $x(t)$ como la suma de una \textbf{aproximación}, que vendría ser la parte más ``burda'' de la señal, con sus infinitos \textbf{detalles}, que serían ``toques finales''. Esto se observa en la figura \ref{Tree}, donde se utilizó una wavelet symmet 4 y 3 de niveles de descomposición. En rojo la señal original, en azul la aproximación y en verde las tres señales de detalle correspondientes.
+  
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.5\textwidth]{Fig/Tree}
+	\caption{Descomposición de nivel 3 de una señal utilizando una wavelet sym4}
+	\label{Tree}
+\end{figure}
+
+A partir de esta idea, vemos que es factible aplicar la transformada de wavelet para eliminar el ruido de una señal. Por lo tanto, si se busca una forma de filtrar los coeficientes a partir de parámetros relacionados con el ruido de la señal, se podrían eliminar las componentes no deseadas. Luego, a la hora de reconstruir la señal, se obtendría una versión sin ruido. Estos parámetros son llamados \textbf{umbrales} y se definirán más adelante.
+
+
+Teniendo en mente la idea del filtrado, y aún con el inconveniente de que el producto interno para calcular los coeficientes (ecuaciones \ref{Beta} y \ref{Alfa}) requiere un alto costo computacional, se plantea una estrategia basada en un algoritmo que relacione las bases ortonormales de wavelets y los bancos de filtros. Dicho algoritmo permite calcular los coeficientes $a^{j}$ y $d^{j}$ a partir de los coeficientes de aproximación de una escala anterior de resolución, es decir los $\alpha^{j-1}$, siendo estos los coeficientes que representan de manera perfecta la señal a analizar. Para llegar a esta relación se parte de la ecuación \ref{NivApDet} donde:
+%Explicar bancos de filtros o nombrarlo de otra forma
+
+\begin{equation}
+\label{Aj}
+A_j(t)=\sum_{k \in \mathbb Z}  a^{j}_{k} \phi _{j,k}(t)
+\end{equation} 
+\begin{equation}
+\label{Dj}
+D_j(t)=\sum_{k \in \mathbb Z}  d^{j}_{k} \psi _{j,k}(t)
+\end{equation} 
+con
+\begin{equation}
+\label{ajk}
+a^{j}_{k}= <A_{j}(t), \phi _{j,k}(t)>
+\end{equation}
+\begin{equation}
+\label{ajk}
+d^{j}_{k}= <A_{j}(t), \psi _{j,k}(t)>
+\end{equation}
+
+Si deseamos obtener $ a^{j}_{k}\: y\: d^{j}_{k}$ a partir de $A_{j-1}$, realizamos el producto interno $A_{j-1}$ y la función de escala y wavelet 
+
+%Poner esto del producto interno? o directamente decir que operando llegamos a las ultimas dos ecuaciones?
+
+\begin{equation}
+<A_{j-1}(t),\psi _{j,k}(t)>=<A_{j}(t)+D_{j},\psi _{j,k}(t)>
+\end{equation}
+
+\begin{equation}
+<A_{j-1}(t),\phi _{j,k}(t)>=<A_{j}(t)+D_{j},\phi _{j,k}(t)>
+\end{equation}
+
+Operando matemáticamente (Ver anexo) llegamos a que:
+
+\begin{equation}
+a^{j}_{k}=\sum_{p \in \mathbb Z} a^{j-1}_{p}<\psi _{j-1,p}(t),\psi _{j,k}(t)>=\sum_{p \in \mathbb Z}a^{j-1}_{p}\sqrt{2} a_{p-2k}
+\end{equation}
+
+\begin{equation}
+d^{j}_{k}=\sum_{p \in \mathbb Z} a^{j-1}_{p}<\psi _{j-1,p}(t),\phi _{j,k}(t)>=\sum_{p \in \mathbb Z}a^{j-1}_{p}\sqrt{2} b_{p-2k}
+\end{equation}
+
+Donde:
+
+\begin{equation}
+	\sqrt{2} a_{p-2k}=<\phi _{j-1,p}(t),\phi _{j,k}(t)>
+\end{equation}
+	
+\begin{equation}
+	\sqrt{2} b_{p-2k}=<\phi _{j-1,p}(t),\psi _{j,k}(t)>
+\end{equation}
+
+
+Se observa que estos coeficientes son productos internos de funciones ya conocidas, la función wavelet y su función de escala. Estos valores ya fueron calculados y se los asume como conocidos, por lo cual si los consideramos como los coeficientes de filtros podemos definir a $LoD=\{[LoD]_{n}\}_{n \in \mathbb{Z}}$ y a $HiD=\{[Hid]_{n}\}_{n \in \mathbb{Z}}$ como el filtro pasabajos y un filtro pasaaltos respectivamente.
+
+
+Por lo cual:
+
+\begin{equation}
+[LoD]_{n}=\sqrt{2}  a_{-n}
+\end{equation}
+
+\begin{equation}
+[HiD]_{n}=\sqrt{2}  b_{-n}
+\end{equation}
+
+Quedando entonces definidos nuestros coeficientes en un nivel j como:
+
+\begin{equation}
+\label{afinal}
+a^{j}_{k}=\sum_{p \in \mathbb Z} a^{j-1}_{p} [LoD]_{2k-p}
+\end{equation}
+
+\begin{equation}
+\label{dfinal}
+d^{j}_{k}=\sum_{p \in \mathbb Z} a^{j-1}_{p} [HiD]_{2k-p}
+\end{equation}
+
+Estos coeficientes presentan un aspecto muy similar a la suma de convolución entre el coeficiente del nivel anterior con el filtro correspondiente. Para que esta sea la convolución se introduce la operación de submuestreo, definida como:
+
+\begin{equation}
+\label{dec}
+y=dec(x)\Leftrightarrow y_{n}=x_{2n} \forall n \in \mathbb Z
+\end{equation}
+
+usando las ecuaciones \ref{afinal}, \ref{dfinal}, \ref{dec} y la convolución llegamos a:
+
+\begin{equation}
+a^{j}=dec(a^{j-1}\ast LoD)
+\end{equation}
+\begin{equation}
+d^{j}=dec(a^{j-1}\ast HiD)
+\end{equation}
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.5\textwidth]{Fig/bancofiltros1D}
+	\caption{Descomposición con banco de filtros para 1D}
+	\label{bancofiltros1D}
+\end{figure}
+
+%agregar la imagen de los bloques 
+Lo que nos permite ver que cada señal se descompone en 2 señales, la de aproximación y detalle de la mitad de la dimension de la señal original.
+
+
+Es posible demostrar que se puede realizar proceso inverso y reconstruir la señal aproximada, de la misma manera en que se descompuso, la suma de señales convolucionadas con filtros pasabajos y pasaaltos, matemáticamente se puede ver en la siguiente expresión:
+
+
+\begin{equation}
+\label{recomp}
+a^{j-1}_{k}=\sum_{p \in \mathbb Z} a^{j}_{p}[LoR]_{k-2p}+\sum_{p \in \mathbb Z} d^{j}_{p}[HoR]_{k-2p}
+\end{equation}
+
+
+Donde LoR y HoR son los filtros pasabajos y pasaaltos de reconstrucción.
+
+
+Como mencionamos anteriormente, las señales $a^{j} yd^{j}$ tienen una dimension menor a la original que se desea reconstruir, por lo que es necesaria ``rellenarlas" para que tengan la dimension correcta.
+
+
+%agregar imagen de bloque de reconstruccion.
+
+Este desarrollo lo podemos extender a dos dimensiones, permitiendo descomponer a las imágenes en cuatro señales diferentes que corresponden a las señales de aproximación y una descomposición de señales de detalles, una para detalles horizontales, verticales y diagonales. Lo mencionado se visualiza en la figura \ref{bancofiltros}.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{Fig/bancofiltros}
+	\caption{Descomposición con banco de filtros para 2D}
+	\label{bancofiltros}
+\end{figure}
+
+Donde las matrices finales representan:
+\begin{itemize}
+\item LL representa la aproximacion.
+\item LH representa los detalles verticales.
+\item HL representa los detalles horizontales.
+\item HH representa los detalles diagonales.
+\end{itemize}
+Y la reconstrucción,para el caso de 2D se visualiza en la figura \ref{bancofiltrosR}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{Fig/bancofiltrosR}
+	\caption{Recomposición con banco de filtros para 2D}
+	\label{bancofiltrosR}
+\end{figure}
+Donde los filtros LR =LoR y HR=HoR hacen referencia en los filtros pasa bajo y pasa alto descriptos en la ecuación \ref{recomp}, y los bloques $2\uparrow$ representan el rellenado de la señal para obtener la dimension correcta en la reconstrucción.
+
+\subsection{\textbf{Umbrales}}
+Como dijimos anteriormente, es necesario determinar parámetros para realizar el filtrado de los coeficientes. Estos parámetros se denominan \textbf{umbrales}. Con el fin de seguir la nomenclatura utilizada en la bibliografía aplicada, a este método se lo denominará umbralización. La umbralización tiene dos características importantes a definir:
+el tipo de umbralización y las distintas forma de calcular el valor del umbral. En la figura \ref{Umbral} observamos los tipos de umbralización \textbf{hard} y \textbf{soft}. El valor del umbral se encuentra 
+notado con $\tau$. El tipo de umbralización \textbf{hard} anula todos los coeficientes que estén en el rango $[-\tau,\tau]$ y no modifica el resto. Lo mismo cumple el umbralizado \textbf{soft}
+con la diferencia que los coeficientes fuera de este rango se ven reducidos linealmente. El tipo hard reproduce de 
+mejor forma los picos y discontinuidades si se piensa una señal en una dimensión, o por ejemplo, los bordes si se piensa en imágenes. Por otro lado, el tipo soft genera 
+resultados mas suaves en la aproximación de la señal, lo que es satisfactorio si no se busca un resultado discontinuo. En las imágenes este método genera un efecto de 
+difuminado justamente para suavizar el resultado final. \\ %Ver redacción y mejorar imagen
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.5\textwidth]{Fig/Umbral}
+	\caption{Tipos de umbralización más utilizados}
+	\label{Umbral}
+\end{figure}
+
+Ahora, para el cálculo del umbral $\lambda$ existen distintos tipos de algoritmos. En este informe se estudiarán los  siguientes:
+
+\begin{itemize}
+\item VisuShrink.
+\item LevelShrink.
+\item BayesShrink.
+\item NormalShrink.
+\item AWT(Adaptative Wavelet Treshholding).
+\end{itemize}
+
+$ \\ $
+
+\subsubsection{\textbf{VisuShrink}} 
+
+este algoritmo, más conocido como umbral universal se calcula con la siguiente ecuación:
+\begin{equation}
+    t_{univ}=\sigma_n \sqrt{2ln(n)}
+\end{equation}
+Donde $\sigma$ es la varianza del ruido y $n$ es la dimensión de la señal. Esta ecuación se deriva a partir de que es conocido que el máximo valor de una señal que
+siga una distribución gaussiana con media cero y varianza $\sigma^2$ ,$(x \thicksim N(0,\sigma^2))$ va a ser menor que el valor $\sigma_n \sqrt{2log(n)}$ con una probabilidad 
+que tiene a uno cuando $n$ tiene a infinito. Por lo tanto, este umbral igualará a cero los coeficientes que presenten ruido puro con una alta probabilidad. La simpleza del 
+algoritmo lo hace de los mas utilizados, sin embargo al solo tener en cuenta las características del ruido y de la dimensión de la 
+imagen suele suavizar mucho la imagen. Esto se debe a que elimina muchos coeficientes de información útil al intentar 
+eliminar el ruido presente.\\
+Antes de continuar con el siguiente umbral, es necesario mencionar dos aspectos importantes, el primero de ellos es por qué los umbrales dependen de la dimension de la señal. Esto se debe a que mientras mayor sea la dimensión aumenta la redundancia de la señal. Por lo tanto, hay menos 
+información nueva (al aumentar la dimensión) que la información de base. Desde el punto de vista de wavelet, esto no genera que se aumenten 
+los coeficientes importantes. Por consecuente, existe una relación proporcional entre los coeficientes de ruido y la dimensión de la señal, lo que implica la necesidad
+de agregarlo al cálculo del umbral. \\
+El segundo aspecto de importancia es que para la estimación de la varianza de ruido de la imágenes se utilizan los coeficientes de mayor frecuencia que son los que presentan mayor energía de ruido. Estos coefiecientes quedan representandos en las matrices de detalle diagonal, ya que si recordamos la figura \ref{bancofiltros} podemos ver que la matriz de detalle diagonal se forma luego de filtrar dos veces la señal con un filtro pasa alto.
+
+%agregar imagen de que la diagonal es una weea.
+$ \\ $
+
+\subsubsection{\textbf{LevelShrink}}
+este umbral depende de la escala de nivel, a diferencia de VisuShrink, que aplica el mismo umbral a cada nivel de descomposición. Su expresión es la siguiente:
+
+\begin{equation}
+    t_{level}=\sigma_n \sqrt{2ln(n)} 2^{-(J-j)/2}
+\end{equation}
+Donde $J$ es el número total de niveles de descomposición y $j$ el nivel correspondiente. Si bien esto genera un umbral que se adapta de mejor manera, sigue sin tener en cuenta los detalles de la señal a analizar.
+
+$ \\ $
+
+\subsubsection{\textbf{BayesShrink}}
+la base de este umbral es minimizar la inferencia bayesiana. Sus ecuaciones son:
+\begin{equation}
+     t_{bayes} = \left\{
+	       \begin{array}{ll}
+		 \sigma_n^2/\sigma_s      & \mathrm{si\ } \sigma_n^2 < \sigma_y^2 \\
+		 max(|y_i|) & \mathrm{si\ } \sigma_n^2 \geq \sigma_y^2 
+	       \end{array}
+	     \right.
+\end{equation}
+Donde $\sigma_n^2$ es la varianza del ruido, $\sigma_y^2$ es la varianza de la señal original y $\sigma_s$ es la varianza de la señal pura que se estima con la siguiente ecuación:
+
+\begin{equation}
+\sigma_{sk}=\sqrt{max\left(\left(\frac{1}{size(H_k)}\sum_{y_i \in H_k}y_i^2\right) - \sigma_n^2,0\right)}
+\end{equation}
+
+Este algoritmo tiene como ventaja respecto a los anteriores que utiliza información de la señal a analizar pero es necesario conocer información de la imagen original (sin ruido).
+
+$ \\ $
+
+\subsubsection{\textbf{NormalShrink}}
+este algoritmo suple la desventaja de BayesShrink ya que no se necesita información de la señal sin ruido y presenta todas las ventajas incorporadas de utilizar información de la señal a analizar. Se lo define como:
+\begin{equation}
+t_{normal} = \frac{\beta_k \sigma_n^2}{\sigma_s}
+\end{equation}
+Donde:
+\begin{equation}
+\beta_k=\sqrt{\frac{ln(size(H_k))}{J}}
+\end{equation}
+Y $\sigma_s$ es el desvío estándar de la señal de cada nivel.
+
+$ \\ $
+
+\subsubsection{\textbf{AWT(Adaptative Wavelet Treshholding)}}
+por último, presentamos el algoritmo AWT el cual depende de la media aritmética y de la media geométrica de los coeficientes de la señal en cada nivel de análisis. Se lo define como:
+\begin{equation}
+t_{AWT}=c\sigma_n - |AM-GM|
+\end{equation}
+Donde $AM$ es la media aritmética, $GM$ es la media geométrica y $c=2^{J-j}$.
+
+
+
+\section{Implementación}
+Para llevar a cabo el filtrado de ruido en imágenes es necesario realizar los siguiente pasos:
+
+\begin{itemize}
+\item[1)] Agregar ruido a una imagen seleccionada. En los ejemplos que mostraremos, utilizaremos ruido gaussiano ya que es el más presente en todo tipo de señales.
+\item[2)] Acondicionar la imagen para que sea cuadrada.
+\item[3)] Calcular el nivel óptimo de descomposición según la wavelet elegida, y la dimensión de la imagen. Si bien podemos elegir un nivel arbitrario de descomposición, aumentarlo por encima del nivel óptimo no mejora el resultado. Esto solo produce un filtrado de la información útil de la imagen, suavizando los detalles.
+\item[4)] Iterar entre los siguientes pasos:
+
+\begin{itemize}
+\label{asd}
+\item[i.] Descomponer la imagen en sus matrices de detalle (horizontal,vertical y diagonal).
+\item[ii.] Calcular el desvío estándar del ruido a partir de la matriz de detalle diagonal para cada nivel.
+
+\item[iii.] Filtrar los coeficientes de la matrices de detalle obtenidas en el paso i., variando alguno de los siguientes parámetros:
+	\begin{itemize}
+	\item Tipo de umbralización : hard o soft.
+	\item Algoritmos de umbralización. 
+	\item Cantidad de niveles de descomposición.
+	\item Tipo de wavelet.
+	\end{itemize}
+\end{itemize}
+
+\item[5)] Reconstruir la imagen a partir de los coeficientes de detalle filtrados en los pasos previos y la matriz de aproximación.
+\item[6)] Corroborar funcionamiento con imágenes con ruido no sintético.
+\end{itemize}
+
+\section{Resultados}
+A continuación, presentamos los resultados obtenidos para la siguientes imágenes de prueba prensentadas en la figura \ref{fig-imagenes-prueba}.Todas se modificaron con un ruido gaussiano de $\sigma=0.3$.\\
+
+\begin{figure}
+        \centering
+        \begin{subfigure}[H]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{Fig/Lenna}
+            \caption[Lenna.]%
+           {{\small Lenna.}}    
+            \label{Lenna}
+        \end{subfigure}
+     %   \hfill
+        \begin{subfigure}[H]{0.4\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/House}
+            \caption[]%
+            {{\small House.}}    
+            \label{House}
+        \end{subfigure}
+        \vskip\baselineskip
+        \begin{subfigure}[H]{0.4\textwidth}   
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/Wave}
+            \caption[]%
+            {{\small Wave.}}    
+            \label{Wave}
+        \end{subfigure}
+ 
+        \caption[ The average and standard deviation of critical parameters ]
+        {\small Imágenes de prueba escogidas.} 
+        \label{fig-imagenes-prueba}
+\end{figure}
+Luego de pruebas con diferentes wavelet, algoritmos de umbralización y cantidad de niveles, se llego a que el mejor resultado visual se obtuvo para:
+\begin{itemize}
+\item Wavelet=Sym8.
+\item Umbral=NormalShrink soft.
+\item Cantidad de niveles=6.
+\end{itemize}
+obteniéndose las imágenes filtradas y reconstruidas presentadas en la figura \ref{fig-imagenes-filtradas}.
+%agregar imagenes filtradas.
+\begin{figure}
+        \centering
+        \begin{subfigure}[H]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{Fig/6_normal_soft_sym8_Lenna}
+            \caption[Lenna.]%
+           {{\small Lenna.}}    
+            \label{Lenna}
+        \end{subfigure}
+     %   \hfill
+        \begin{subfigure}[H]{0.4\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/6_normal_soft_sym8_House}
+            \caption[]%
+            {{\small House.}}    
+            \label{House}
+        \end{subfigure}
+        \vskip\baselineskip
+        \begin{subfigure}[H]{0.4\textwidth}   
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/6_normal_soft_sym8_Wave}
+            \caption[]%
+            {{\small Wave.}}    
+            \label{Wave}
+        \end{subfigure}
+ 
+        \caption[ The average and standard deviation of critical parameters ]
+        {\small Imágenes filtradas.} 
+        \label{fig-imagenes-filtradas}
+\end{figure}
+
+Para corrobar este resultado presentamos tablas comparativas de las distintas combinaciones de parámetros descritos en el item 4-iii en la sección \ref{asd}. Los estadísticos que se utilizaron para comparar es el PSNR (Peak Signal-to-Noise Ratio) que define la relación entre la máxima energía posible de una señal y el ruido que la afecta, mientras menor es el valor mayor es la cantidad de ruido en la imagen. El otro estadístico utilizado es el SSIM (structural similarity) que mide la similitud entre dos imágenes. El resultado varia entre $0$ y $1$, donde $SSIM=1$ indica que las imágenes son iguales. La ventaja de este estadístico recae en que los resultados coinciden con la percepción del ojo humano, lo que no sucede con el PSNR.
+
+
+
+
+
+\begin{table}[H]
+\centering 
+\begin{tabular}{lrrrrr}
+\toprule
+{imagen\textbackslash niveles} &  noise &      1 &      2 &      4 &      6 \\
+\midrule
+Lenna &  17.65 &  23.92 &  \bf{27.03} &  22.29 &  22.29 \\
+House &  19.87 &  22.90 &  \bf{25.58} &  24.57 &  23.51 \\
+Wave &  18.63 &  23.34 &  \bf{26.70} &  24.71 &  24.65 \\
+\bottomrule
+\end{tabular}
+\label{tabla-levels}
+\caption{Proporción máxima de señal a ruido utilizando wavelet Sym8, umbral normalshrink, metodo soft.}
+\end{table}
+\begin{table}
+\centering 
+\begin{tabular}{lrrrrr}
+\toprule
+{imagen\textbackslash niveles} &  noise &      1 &      2 &      4 &      6 \\
+\midrule
+Lenna &  0.518 &  0.742 &  \bf{0.856} &  0.847 &  0.808 \\
+House &  0.620 &  0.806 &  \bf{0.882} &  0.839 &  0.814 \\
+Wave &  0.586 &  0.761 &  \bf{0.839} &  0.820 &  0.803 \\
+\bottomrule
+\end{tabular}
+\label{tabla-levels-SSIM}
+\caption{SSIM utilizando wavelet Sym8, umbral normalshrink, metodo soft.}
+\end{table}
+\begin{figure}
+        \centering
+        \begin{subfigure}[H]{0.22\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{Fig/Levels/1_normal_soft_sym8_Lenna}
+            \caption[Lenna.]%
+           {{\small Nivel 1.}}    
+            \label{Lenna}
+        \end{subfigure}
+     %   \hfill
+        \begin{subfigure}[H]{0.22\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/Levels/2_normal_soft_sym8_Lenna}
+            \caption[]%
+            {{\small Nivel 2.}}    
+            \label{House}
+        \end{subfigure}
+        \vskip\baselineskip
+        \begin{subfigure}[H]{0.22\textwidth}   
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/Levels/4_normal_soft_sym8_Lenna}
+            \caption[]%
+            {{\small Nivel 4.}}    
+            \label{Wave}
+        \end{subfigure}
+ 		\begin{subfigure}[H]{0.22\textwidth}   
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/Levels/6_normal_soft_sym8_Lenna}
+            \caption[]%
+            {{\small Nivel 6.}}    
+            \label{Wave}
+        \end{subfigure}
+        \caption[ The average and standard deviation of critical parameters ]
+        {\small Imágenes filtradas por nivel. } 
+        \label{fig-imagenes-filtradas-nivel}
+\end{figure}
+\begin{table}
+\centering 
+\begin{tabular}{lrrr}
+\toprule
+{imagen\textbackslash metodo } &  noise &   soft &   hard \\
+\midrule
+Lenna &  17.65 &  \bf{27.03} &  21.41 \\
+House &  19.87 &  \bf{25.58} &  20.20 \\
+Wave &  18.63 &  \bf{26.70} &  20.85 \\
+\bottomrule
+\end{tabular}
+\label{tabla-modos}
+\caption{Proporción máxima de señal a ruido utilizando wavelet Sym8,dos niveles de descomposición,umbral normalshrink.}
+\end{table}
+\begin{table}
+\centering 
+\begin{tabular}{lrrr}
+\toprule
+{imagen\textbackslash metodo } &  noise &   soft &   hard \\
+\midrule
+Lenna &  0.518 &  \bf{0.856} &  0.757 \\
+House &  0.620 &  \bf{0.882} &  0.789 \\
+Wave &  0.586 &  \bf{0.839} &  0.755 \\
+\bottomrule
+\end{tabular}
+\label{tabla-modos-SSIM}
+\caption{SSIM utilizando wavelet Sym8,dos niveles de descomposición,umbral normalshrink.}
+\end{table}
+\begin{figure}
+        \centering
+        \begin{subfigure}[H]{0.2\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{Fig/Modes/2_normal_soft_sym8_House}
+            \caption[Lenna.]%
+           {{\small Imagen filtrada soft.}}    
+            \label{Lenna}
+        \end{subfigure}
+     %   \hfill
+        \begin{subfigure}[H]{0.2\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/Modes/2_normal_hard_sym8_House}
+            \caption[]%
+            {{\small Imagen filtrada hard.}}    
+            \label{House}
+        \end{subfigure}
+       \vskip\baselineskip
+        \label{fig-imagenes-filtradas-modes}
+        \caption[ The average and standard deviation of critical parameters ]
+         {\small Imágenes filtradas con los métodos soft y hard. } 
+\end{figure}
+\begin{table}
+\centering 
+\begin{tabular}{lrrrrrr}
+\toprule
+{} &  noise &  universal &  bayes &  level &  normal &    awt \\
+\midrule
+Lenna &  17.65 &      25.86 &  25.71 &  25.40 &   \bf{27.03} &  25.24 \\
+House &  19.87 &      22.91 &  23.32 &  23.19 &   \bf{25.58} &  23.41 \\
+Wave &  18.63 &      26.74 &  26.70 &  26.86 &   \bf{26.70} &  25.56 \\
+\bottomrule
+\end{tabular}
+\label{tabla-umbrales}
+\caption{Proporción máxima de señal a ruido utilizando wavelet Sym8,dos niveles de descomposición,metodo soft.}
+\end{table}
+\begin{table}
+\centering 
+\begin{tabular}{lrrrrrr}
+\toprule
+{} &  noise &  universal &  bayes &  level &  normal &    awt \\
+\midrule
+Lenna &  0.518 &   0.848 &  0.847 &  0.849 &  \bf{0.856} &  0.838 \\
+House &  0.620 &   0.851 &  0.850 &  0.857 &  \bf{0.882} &  0.849 \\
+Wave &  0.586 &   0.830 &  0.829 &  0.833 &  \bf{0.839} &  0.823 \\
+\bottomrule
+\end{tabular}
+\label{tabla-umbrales-SSIM}
+\caption{SSIM utilizando wavelet Sym8,dos niveles de descomposición,metodo soft.}
+\end{table}
+\begin{figure}
+        \centering
+        \begin{subfigure}[H]{0.22\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{Fig/Thr/2_universal_soft_sym8_Lenna}
+            \caption[Lenna.]%
+           {{\small Universal.}}    
+            \label{Lenna}
+        \end{subfigure}
+     %   \hfill
+        \begin{subfigure}[H]{0.22\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/Thr/2_bayes_soft_sym8_Lenna}
+            \caption[]%
+            {{\small Bayes.}}    
+            \label{House}
+        \end{subfigure}
+        \vskip\baselineskip
+        \begin{subfigure}[H]{0.22\textwidth}   
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/Thr/2_level_soft_sym8_Lenna}
+            \caption[]%
+            {{\small Level.}}    
+            \label{Wave}
+        \end{subfigure}
+ 		\begin{subfigure}[H]{0.22\textwidth}   
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/Thr/2_normal_soft_sym8_Lenna}
+            \caption[]%
+            {{\small Normal.}}    
+            \label{Wave}
+        \end{subfigure}
+        \begin{subfigure}[H]{0.22\textwidth}   
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/Thr/2_awt_soft_sym8_Lenna}
+            \caption[]%
+            {{\small AWT.}}    
+            \label{Wave}
+        \end{subfigure}      
+        \caption[ The average and standard deviation of critical parameters ]
+        {\small Imágenes filtradas con distintos algoritmos de umbralización. } 
+        \label{fig-imagenes-filtradas-thr}
+\end{figure}
+\begin{table}
+\centering 
+\begin{tabular}{lrrrr}
+\toprule
+{imagen\textbackslash wavelet} &  noise &   haar &    db4 &   sym8 \\
+\midrule
+Lenna &  17.65 &  23.44 & 25.19 &  \bf{27.03} \\
+House &  19.87 &  \bf{26.38} &  24.78 &  25.58 \\
+Wave &  18.63 &  24.67 &  \bf{26.87} &  26.70 \\
+\bottomrule
+\end{tabular}
+\caption{Proporción máxima de señal a ruido utilizando dos niveles de descomposición,umbral normalshrink, método soft.}
+\label{tabla-wavelets}
+\end{table}
+\begin{table}
+\centering 
+\begin{tabular}{lrrrr}
+\toprule
+{imagen\textbackslash wavelet} &  noise &   haar &    db4 &   sym8 \\
+\midrule
+Lenna &  0.518 &  0.819 &  0.853 &  \bf{0.856} \\
+House &  0.620 &  0.848 &  0.875 &  \bf{0.882} \\
+Wave &  0.586 &  0.805 &  0.836 &  \bf{0.839} \\
+\bottomrule
+\end{tabular}
+\label{tabla-wavelets-SSIM}
+\caption{SSIM utilizando dos niveles de descomposición,umbral normalshrink, método soft.}
+\end{table}
+\begin{figure}[H]
+        \centering
+        \begin{subfigure}[H]{0.2\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{Fig/Wav/2_normal_soft_haar_Wave}
+            \caption[Lenna.]%
+           {{\small Wavelet haar.}}    
+            \label{Lenna}
+        \end{subfigure}
+     %   \hfill
+        \begin{subfigure}[H]{0.2\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/Wav/2_normal_soft_db4_Wave}
+            \caption[]%
+            {{\small Wavelet db4.}}    
+            \label{House}
+        \end{subfigure}
+        \begin{subfigure}[H]{0.2\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/Wav/2_normal_soft_sym8_Wave}
+            \caption[]%
+            {{\small Wavelet sym8.}}    
+            \label{House}
+        \end{subfigure}
+       \vskip\baselineskip
+        \label{fig-imagenes-filtradas-modes}
+        \caption[ The average and standard deviation of critical parameters ]
+         {\small Imágenes filtradas con distintas wavelet.} 
+\end{figure}
+%parrafo haciendo referencia porque los mejores parametros son los que se dijeron antes
+
+\subsection{Comparacion con otros metodos}
+
+\begin{table}[H]
+\centering 
+\begin{tabular}{lrrrr}
+\toprule
+{} &  noise &  wavelet &  wiener &  gaussian \\
+\midrule
+Lenna &  23.10 &    23.83 &   \bf{26.30} &     26.14 \\
+House &  24.80 &    25.07 &   \bf{28.28} &     27.99 \\
+Wave &  24.21 &    24.33 &   \bf{27.00} &     26.86 \\
+\bottomrule
+\end{tabular}
+\label{tabla-comparacion}
+\caption{Proporción máxima de señal a ruido para los distintos metodos de filtrado.}
+\end{table}
+\begin{table}
+\centering 
+\begin{tabular}{lrrrr}
+\toprule
+{} &  noise &  wavelet &  wiener &  gaussian \\
+\midrule
+Lenna &  0.647 &  \bf{0.870} &  0.843 &  0.835 \\
+House &  0.740 &  \bf{0.906} &  0.895 &  0.886 \\
+Wave &  0.693 &  \bf{0.887} &  0.862 &  0.853 \\
+\bottomrule
+\end{tabular}
+\label{tabla-comparacion-SSIM}
+\caption{SSIM para los distintos metodos de filtrado.}
+\end{table}
+\begin{figure}[H]
+        \centering
+        \begin{subfigure}[H]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{Fig/comparacion/wavelet_House}
+            \caption[Lenna.]%
+           {{\small Filtro de wavelet.}}    
+            \label{filtro de wavelet}
+        \end{subfigure}
+     %   \hfill
+        \begin{subfigure}[H]{0.4\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/comparacion/wiener_House}
+            \caption[]%
+            {{\small Filtro de Wiener.}}    
+            \label{filtro de wiener}
+        \end{subfigure}
+        \begin{subfigure}[H]{0.4\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/comparacion/gaussian_House}
+            \caption[]%
+            {{\small Filtro gaussiano.}}    
+            \label{filtro gaussiano}
+        \end{subfigure}
+       \vskip\baselineskip
+        \label{fig-comp-metodos}
+        \caption[ The average and standard deviation of critical parameters ]
+         {\small House filtrada con los distintos metodos.} 
+\end{figure}
+\subsection{aplicacion a imagenes reales}
+
+Por último, con el fin de verificar el funcionamiento del filtrado con imágenes reales (es decir que el ruido presente en ellas no se agrego artificialmente). Para esto se utilizaron 3 imágenes, una del Príncipe de Gales del año 1925 y dos resonancias que tienen la particularidad de presentar un tipo de ruido llamado Rician propio del estudio.
+
+\begin{figure}[H]
+        \centering
+        \begin{subfigure}[H]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{Fig/real/0}
+            \caption[tom1sinfiltrar.]%
+           {{\small Imagen real sin filtrar.}}    
+            \label{}
+        \end{subfigure}
+     %   \hfill
+        \begin{subfigure}[H]{0.4\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/real/0-f}
+            \caption[]%
+            {{\small Imagen real filtrada.}}    
+            \label{}
+        \end{subfigure}
+       \vskip\baselineskip
+        \label{fig-comp-metodos}
+        \caption[ The average and standard deviation of critical parameters ]
+         {\small House filtrada con los distintos metodos.} 
+\end{figure}
+\begin{figure}[]
+        \centering
+        \begin{subfigure}[H]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{Fig/real/1}
+            \caption[tom1sinfiltrar.]%
+           {{\small Imagen real sin filtrar.}}    
+            \label{}
+        \end{subfigure}
+     %   \hfill
+        \begin{subfigure}[H]{0.4\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/real/1-f}
+            \caption[]%
+            {{\small Imagen real filtrada.}}    
+            \label{}
+        \end{subfigure}
+       \vskip\baselineskip
+        \label{fig-comp-metodos}
+        \caption[ The average and standard deviation of critical parameters ]
+         {\small House filtrada con los distintos metodos.} 
+\end{figure}
+\begin{figure}[H]
+        \centering
+        \begin{subfigure}[H]{0.4\textwidth}
+            \centering
+            \includegraphics[width=\textwidth]{Fig/real/2}
+            \caption[tom1sinfiltrar.]%
+           {{\small Imagen real sin filtrar.}}    
+            \label{}
+        \end{subfigure}
+     %   \hfill
+        \begin{subfigure}[H]{0.4\textwidth}  
+            \centering 
+            \includegraphics[width=\textwidth]{Fig/real/2-f}
+            \caption[]%
+            {{\small Imagen real filtrada.}}    
+            \label{}
+        \end{subfigure}
+       \vskip\baselineskip
+        \label{fig-comp-metodos}
+        \caption[ The average and standard deviation of critical parameters ]
+         {\small House filtrada con los distintos metodos.} 
+\end{figure}
+
+\section{Conclusiones}
+A partir de los resultados obtenidos se puede concluir de manera general que el método de filtrado de ruido utilizando la transformada de Wavelet es una herramienta útil. Viendo las figuras \ref{fig-imagenes-prueba}, \ref{fig-imagenes-filtradas} observamos que el resultado de filtrar el ruido sintético es aceptable. Si bien se presenta un difuminado que provoca perdidas de detalles esto es normal en la mayoría de métodos que utilizan umbrales, justamente por la necesidad de eliminar el ruido. Es importante recalcar la elección del nivel de descomposición y su relación con los estadísticos. Si bien en las tablas vemos que el nivel dos es el que brinda mejores resultados numéricamente, a la hora de ver las imágenes el nivel seis muestra menor cantidad de ruido que la imagen del nivel dos. Esta discrepancia se puede deber a que si bien la imagen del nivel 2 presenta ruido visible, la intensidad de los píxeles no varía tanto respecto a la original como si lo hace el nivel 6, lo que genera en la forma de calcular los estadísticos un mejor resultado. Por otro lado, la razón por la cual el nivel seis elimina mayor cantidad de ruido es que el nivel de descomposición aumenta y esto permite filtrar una mayor cantidad de coeficientes de detalles. Como resultado se elimina una cantidad superior de ruido a costa de perder detalles. La wavelet utilizada sym8 es congruente que brinde mejores resultados ya que la forma de este tipo de onda se adapta de manera óptima a los detalles de la imagen por tener una forma mas suave que la wavelet haar y db4. Por último, el algoritmo de umbralización NormalShrink nos brinda un mejor filtrado debido a que utiliza información de la imagen y no solo de la varianza del ruido. \\
+Si analizamos en particular las tablas, es interesante el resultado de la tabla \ref{tabla-wavelets}. Para la wavelet haar la casa obtiene mejor PSNR lo que es coherente por la forma de la haar y por los bordes rectos que preesnta la casa. La forma discontinua y ``dura'' de esta wavelet no suaviza los bordes lo que permite que sobrevivan al filtrado. Sin embargo, los detalles de la imagen que no posean estas características se ven suprimidos lo que genera una mayor discrepancia con la imagen original y es congruente con el resultado de la SSIM (tabla  \ref{tabla-wavelets-SSIM})\\
+Ahora analizamos los resultados con los métodos de filtrado gaussiano y wiener. Vemos en la figura \ref{fig-comp-metodos} que estos dos métodos no quitan tanto el ruido como el método de la transformada wavelet, pero a raíz de esto presentan un menor difuminado. Si nos guiamos con la tabla \ref{tabla-comparacion-SSIM}, los resultados de la transformada wavelet dan un mejor SSIM comparado con wiener y gaussiano. Concluyendo, la transformada de wavelet utilizada para filtrar ruido actua de manera óptima al compararlo con métodos especializados en el filtrado de ruido.\\
+Por último, cuando se implemento el filtrado en imágenes reales que contenían ruido, es decir que no se le agregó ruido de forma sintética, el resultado es aceptable. En la imagen del Príncipe de Gales es destacable que en comparación con las imágenes sintéticas esta no posee el mismo nivel de ruido en todas sus regiones y por lo tanto en las zonas donde es mayor el ruido vemos un mayor difuminado en la imagen resultante. Además, en el caso particular de las resonancias, éstas no presentan ruido gaussiano y aún así el filtro fue lo bastante robusto para adaptarse brindando un buen resultado.
+
+
+
+
+
+
+%\section{Bibliografia}
+%\begin{itemize}
+%    \item http://servicio.bc.uc.edu.ve/ingenieria/revista/a16n1/art5.pdf
+%    \item https://www.researchgate.net/publication/271638415_Estudio_comparativo_de_tecnicas_de_reduccion_de_ruido_en_senales_industriales_mediante_Transformada_Wavelet_Discreta_y_seleccion_adaptativa_del_umbral
+%    \item https://cimat.repositorioinstitucional.mx/jspui/bitstream/1008/319/2/TE%20451.pdf
+%    \item http://catarina.udlap.mx/u_dl_a/tales/documentos/lem/hernandez_d_m/capitulo3.pdf
+%    \item https://pdf.sciencedirectassets.com/278653/1-s2.0-S1877705811X00115/1-s2.0-S1877705811022508/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJHMEUCIQD7Mu%2BgITpyNvVbfnlTq9snIEnggYKA%2FqBKeqq8UDOHCAIgH9ECWbpp2nIc5vF2diHzFIUgyoRPDaCrhxwX0oozwSQqtAMIERADGgwwNTkwMDM1NDY4NjUiDJhCs2If2ny%2Bqm7KTyqRA%2BEeYz4kiSZtfi5eTW%2FwIYOWFQx92wORhyuKfpxlm2xDD9ln7e6Px9wrjXwzx2Hr5V2Rk3vvofJlHmKnxLUmz9wMJpITCa7%2Bw8V6NHJkN50nBldSe4mV4wDQxHvrg1ptyYK79wRuHhPPtKz8n%2BryaQjxf9sGffoNxnSahC2HyKO85tD%2FjsERa7j4fr%2BPslBxstPzBl3aWWhKcUJy%2B6tDpz%2BNyGwUBUcGyu%2FwipiaQCC%2BJCtDXLVPPcW6tMdyv7pPuXVNckgg%2BpNPk1GzBDvQ6oHzRQm90hDEeP12nTvYw7a8flbpiWI%2FGZ7uotr2dT0xhkr7Wn2TXVCH9HrvSUZAI%2Bzd%2FMEoXDGw1JjL%2BIEXy96ienlq%2Fnhsh4MwoL%2FqoG%2FvPUR3YcopcsTUlbN%2FNQxVpyZMcFFKyD%2BNPktTqZUztH%2FH5leTnHzZTihrdOwt1nuH9VrjdFLVytfhxONOdEM0xhP7%2BOo9W%2BTUSY81UQuywSIw8mSB38DxBs5YxMKN20h5yPp%2Bpmo5cMacQFQIiQ9NMvKFMI%2FksfcFOusBejApAqTkvRvTVkFAbR0QKNmYX966YjNTqvXFxKdyQcZJdqVVgh62uH22YppPpMo4NF8EAdEoxeG2%2BTOGNyejEStbR5EjQtWCPjaF0%2BEoe%2FRPxKwCDN3ucrUsMu0cMcsnVMXjoAoEIuFyW1fMl8zNsECZcIlMvIkxL4Fo40xwAz%2BeOW8iPDegRLrQkP8yrJ0csmyQ0n9%2BR9VQEZ6jLjOSCg79uzQhf65MSStIJD3KBFYeyTYcakGOpmcfU%2Bzw0EQwUK0iUbGv158hzBaw6N26SfBuXEdhmSsZehpvp0umVr%2FO3VS0hYqRllrWkw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200619T085726Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTY2YQE2O4F%2F20200619%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=e61a54df0f892843e7a22247482e2d22ef1f6383defa6c047d0b50f6a5af3354&hash=9709537d72c55d02b41081fde253a60c9280ddf6505f5696ed24227c7561c6de&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S1877705811022508&tid=spdf-2dc93cef-8141-47c1-bfce-780564964774&sid=106d9d7b6e310043430847092ced793f66e2gxrqa&type=client
+%    \item http://what-when-how.com/embedded-image-processing-on-the-tms320c6000-dsp/wavelet-demising-image-processing-part-1/
+%\item https://www.ee.iitb.ac.in/~icvgip/PAPERS/202.pdf
+%\item https://docplayer.net/163633874-Comprehensive-analysis-on-the-effects-of-noise-estimation-strategies-on-image-noise-artifact-suppression-performance.html
+%\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
