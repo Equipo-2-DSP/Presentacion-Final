@@ -171,6 +171,131 @@ Algortimos para el cálculo del umbral $\tau$:
   
   \end{frame}
 
+  \subsection{Banco de filtros}
+  
+  \begin{frame}
+    \frametitle{¿Comó solucionamos el inconveniente del producto interno?}
+    
+    Estrategia: Algoritmo que relacione las bases ortonormales y la idea de banco de filtros.
+      
+     Si partimos de la ecuación \ref{Central} y recordamos como se descomponían estas funciones, tenemos el inconveniente de los productos internos.
+        
+  \end{frame}
+
+   \begin{frame}
+
+Reescribiendo la ecuación \ref{Central} 
+   \begin{equation}
+\label{Aj}
+A_j(t)=\sum_{k \in \mathbb Z}  a^{j}_{k} \phi _{j,k}(t)
+\end{equation} 
+\begin{equation}
+\label{Dj}
+D_j(t)=\sum_{k \in \mathbb Z}  d^{j}_{k} \psi _{j,k}(t)
+\end{equation} 
+con
+\begin{equation}
+\label{ajk}
+a^{j}_{k}= <A_{j}(t), \phi _{j,k}(t)>
+\end{equation}
+\begin{equation}
+\label{ajk}
+d^{j}_{k}= <A_{j}(t), \psi _{j,k}(t)>
+\end{equation}
+    \end{frame}
+    
+  \begin{frame}
+   Podemos obtener $a^{j}$y $d^{j}$ a partir de $A_{j-1}$, partiendo de del 	producto interno de $A_{j-1}$ y las funciones de escala y wavelet
+   \begin{equation}
+<A_{j-1}(t),\psi _{j,k}(t)>=<A_{j}(t)+D_{j},\psi _{j,k}(t)>
+\end{equation}
+
+\begin{equation}
+<A_{j-1}(t),\phi _{j,k}(t)>=<A_{j}(t)+D_{j},\phi _{j,k}(t)>
+\end{equation}
+  \end{frame}
+  
+  \begin{frame}
+  A su ves sabemos que 
+  \begin{equation}
+  A_{j-1}(t)=\sum_{k \in \mathbb{Z}} a^{j-1}_{k} \phi^{j-1}_{k}(t)
+  \end{equation}
+  con lo que obtenemos que 
+  \begin{equation}
+  a^{j}_{k}=\sum_{p \in \mathbb{Z}} a^{j-1}_{p} <\phi_{j-1,p},\phi_{j,k}>
+  \end{equation}
+  \begin{equation}
+  d^{j}_{k}=\sum_{p \in \mathbb{Z}} a^{j-1}_{p} <\phi_{j-1,p},\psi_{j,k}>
+  \end{equation}
+  \end{frame}
+  
+  \begin{frame}
+  Pero tanto los productos internos de $<\phi_{j-1,p},\phi_{j,k}>$ $<\phi_{j-1,p},\psi_{j,k}>$, son productos internos de funciones conocidas que ya fueron calculadas por lo cual podríamos tomarlo como coeficientes conocidos mas aun como coeficientes de filtros.
+  
+\begin{equation}
+	\sqrt{2} a_{p-2k}=<\phi _{j-1,p}(t),\phi _{j,k}(t)>
+\end{equation}
+	
+\begin{equation}
+	\sqrt{2} b_{p-2k}=<\phi _{j-1,p}(t),\psi _{j,k}(t)>
+\end{equation}
+  
+  \end{frame}
+\begin{frame}
+Por lo que se definen los coeficientes de los filtros 
+\begin{equation}
+[LD]_{n}=\sqrt{2}  a_{-n}
+\end{equation}
+
+\begin{equation}
+[HD]_{n}=\sqrt{2}  b_{-n}
+\end{equation}
+Donde LD es un filtro pasa bajos y HD es un filtro pasa altos.
+Por lo que reescribimos a $a^{j}_k$ y $d^{j}_k$
+\begin{equation}
+\label{afinal}
+a^{j}_{k}=\sum_{p \in \mathbb Z} a^{j-1}_{p} [LD]_{2k-p}
+\end{equation}
+
+\begin{equation}
+\label{dfinal}
+d^{j}_{k}=\sum_{p \in \mathbb Z} a^{j-1}_{p} [HD]_{2k-p}
+\end{equation}
+
+\end{frame}
+\begin{frame}
+Graficamente lo visualizamos
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=.75\textwidth]{imgs/bancofiltros1D}
+	\caption{Descomposición con banco de filtros para 1D.}
+	\label{bancofiltros1D}
+\end{figure}
+\end{frame}
+\begin{frame}
+Para el caso que nosotros estudiamos, de imágenes, la descomposición en 2D, ve como un doble filtrado
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.75\textwidth]{imgs/bancofiltros}
+	\caption{Descomposición con banco de filtros para 2D.}
+	\label{bancofiltros}
+\end{figure}
+\end{frame}
+\begin{frame}
+Es posible realizar el proceso inverso y recuperar la señal original
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.75\textwidth]{imgs/bancofiltrosR}
+	\caption{Recomposición con banco de filtros para 2D.}
+	\label{bancofiltrosR}
+\end{figure}
+\end{frame}
+
+
+
+
+
+
   \section{Resultados}
 
   \subsection{Imagenes de prueba}
