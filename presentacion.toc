@@ -1,0 +1,8 @@
+\babel@toc {spanish}{}
+\beamer@sectionintoc {1}{Resumen}{3}{0}{1}
+\beamer@sectionintoc {2}{Marco Teorico}{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{Banco de filtros}{4}{0}{2}
+\beamer@sectionintoc {3}{Resultados}{13}{0}{3}
+\beamer@subsectionintoc {3}{1}{Imagenes de prueba}{13}{0}{3}
+\beamer@subsectionintoc {3}{2}{Parametros optimos}{14}{0}{3}
+\beamer@subsectionintoc {3}{3}{Comparacion de filtros}{25}{0}{3}
