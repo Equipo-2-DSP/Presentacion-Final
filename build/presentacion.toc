@@ -2,10 +2,11 @@
 \beamer@sectionintoc {1}{Resumen}{3}{0}{1}
 \beamer@sectionintoc {2}{Marco Teorico}{4}{0}{2}
 \beamer@subsectionintoc {2}{1}{Analisis Multiresolucion}{4}{0}{2}
-\beamer@subsectionintoc {2}{2}{Umbralización}{7}{0}{2}
-\beamer@sectionintoc {3}{Implementacion}{9}{0}{3}
-\beamer@subsectionintoc {3}{1}{Banco de filtros}{11}{0}{3}
-\beamer@sectionintoc {4}{Resultados}{20}{0}{4}
-\beamer@subsectionintoc {4}{1}{Imagenes de prueba}{20}{0}{4}
-\beamer@subsectionintoc {4}{2}{Parametros optimos}{21}{0}{4}
+\beamer@subsectionintoc {2}{2}{Banco de filtros}{7}{0}{2}
+\beamer@subsectionintoc {2}{3}{Umbralización}{16}{0}{2}
+\beamer@sectionintoc {3}{Implementacion}{18}{0}{3}
+\beamer@sectionintoc {4}{Resultados}{19}{0}{4}
+\beamer@subsectionintoc {4}{1}{Imagenes de prueba}{19}{0}{4}
+\beamer@subsectionintoc {4}{2}{Parametros optimos}{20}{0}{4}
 \beamer@subsectionintoc {4}{3}{Comparacion de filtros}{32}{0}{4}
+\beamer@subsectionintoc {4}{4}{Imagenes reales}{36}{0}{4}
