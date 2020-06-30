@@ -1,6 +1,6 @@
 \documentclass{beamer}
 \usepackage[spanish]{babel}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{booktabs}
 \usepackage{graphicx}
 
@@ -96,6 +96,14 @@
   \end{frame}
 
   \begin{frame}
+    \frametitle{Comparación de niveles 2 - 6}
+    \centering
+    \includegraphics[width=5cm]{imgs/Levels/2_normal_soft_sym8_Lenna.jpg}  
+    \includegraphics[width=5cm]{imgs/Levels/6_normal_soft_sym8_Lenna.jpg}
+  
+  \end{frame}
+
+  \begin{frame}
     \frametitle{ Comparacion de modos }
     \centering
     \begin{tabular}{lrrr}
@@ -135,7 +143,7 @@
       \midrule
       Lenna &  17.65 &      25.86 &  25.71 &  25.40 &   \bf{27.03} &  25.24 \\
       House &  19.87 &      22.91 &  23.32 &  23.19 &   \bf{25.58} &  23.41 \\
-      Wave &  18.63 &      26.74 &  26.70 &  26.86 &   \bf{26.70} &  25.56 \\
+      Wave &  18.63 &      26.74 &  26.70 &  \bf{26.86} &   26.70 &  25.56 \\
       \bottomrule
       \end{tabular}
       \begin{tabular}{lrrrrrr}
@@ -226,7 +234,7 @@
       \toprule
       level & wavelet & mode & umbral \\
       \midrule 
-      2 & sym8 & soft & normal \\
+      6 & sym8 & soft & normal \\
       \bottomrule
     \end{tabular}
   
@@ -236,9 +244,68 @@
 
   \begin{frame}
     \frametitle{Resultado del filtrado}
-  
+    \centering
+    \begin{tabular}{lrrrr}
+      \toprule
+      {} &  noise &  wavelet &  wiener &  gaussian \\
+      \midrule
+      Lenna &  23.10 &    23.83 &   \bf{26.30} &     26.14 \\
+      House &  24.80 &    25.07 &   \bf{28.28} &     27.99 \\
+      Wave &  24.21 &    24.33 &   \bf{27.00} &     26.86 \\
+      \bottomrule
+      \end{tabular}
     
   
+    \begin{tabular}{lrrrr}
+      { SSIM } &  noise &  wavelet &  wiener &  gaussian \\
+      \midrule
+      Lenna &  0.647 &  \bf{0.870} &  0.843 &  0.835 \\
+      House &  0.740 &  \bf{0.906} &  0.895 &  0.886 \\
+      Wave &  0.693 &  \bf{0.887} &  0.862 &  0.853 \\
+      \bottomrule
+      \end{tabular}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Wavelet}
+    \centering
+    \includegraphics[width=6cm]{imgs/Comparacion/wavelet_Lenna.jpg}
+  
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Wiener}
+  
+    \centering
+
+    \includegraphics[width=6cm]{imgs/Comparacion/wiener_Lenna.jpg}
+  
+  \end{frame}
+
+
+  \begin{frame}
+    \frametitle{Gaussiano}
+  
+    \centering
+    \includegraphics[width=6cm]{imgs/Comparacion/gaussian_Lenna.jpg}
+  
+  \end{frame}
+
+  \subsection{Imagenes reales}
+
+  \begin{frame}
+    \frametitle{Principe de gales - 1925}
+    \centering
+    \includegraphics[width=5cm]{imgs/Real-resize/1.jpg}
+    \includegraphics[width=5cm]{imgs/Real/1.jpg}
+  
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Resonancia magnetica}
+    \centering
+    \includegraphics[width=5cm]{imgs/Real-resize/0.jpg}
+    \includegraphics[width=5cm]{imgs/Real/0.jpg}  
   \end{frame}
 
   \section{Conclusiones}

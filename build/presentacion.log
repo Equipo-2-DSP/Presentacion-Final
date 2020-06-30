@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7445) (preloaded format=pdflatex 2020.6.27)  28 JUN 2020 01:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7445) (preloaded format=pdflatex 2020.6.27)  30 JUN 2020 10:03
 entering extended mode
 **/home/lautaro/Documents/Facultad/DSP/wavelet/presentacion/presentacion.tex
 (/home/lautaro/Documents/Facultad/DSP/wavelet/presentacion/presentacion.tex
@@ -525,9 +525,7 @@ Package babel Info: Making > an active character on input line 707.
 Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks45
 \inpenc@posthook=\toks46
- (/usr/local/share/miktex-texmf/tex/latex/base/latin1.def
-File: latin1.def 2018/08/11 v1.3c Input encoding file
-)) (/home/lautaro/.miktex/texmfs/install/tex/latex/booktabs/booktabs.sty
+) (/home/lautaro/.miktex/texmfs/install/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen278
 \lightrulewidth=\dimen279
@@ -784,104 +782,165 @@ LaTeX Info: Redefining \% on input line 1.
 ] [5
 
 ]
-<imgs/Levels/1_normal_soft_sym8_Lenna.jpg, id=212, 513.92pt x 513.92pt>
+<imgs/Levels/1_normal_soft_sym8_Lenna.jpg, id=224, 513.92pt x 513.92pt>
 File: imgs/Levels/1_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
 <use imgs/Levels/1_normal_soft_sym8_Lenna.jpg>
 Package pdftex.def Info: imgs/Levels/1_normal_soft_sym8_Lenna.jpg  used on input line 96.
 (pdftex.def)             Requested size: 99.58464pt x 99.58272pt.
-<imgs/Levels/2_normal_soft_sym8_Lenna.jpg, id=213, 513.92pt x 513.92pt>
+<imgs/Levels/2_normal_soft_sym8_Lenna.jpg, id=225, 513.92pt x 513.92pt>
 File: imgs/Levels/2_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
 <use imgs/Levels/2_normal_soft_sym8_Lenna.jpg>
 Package pdftex.def Info: imgs/Levels/2_normal_soft_sym8_Lenna.jpg  used on input line 96.
 (pdftex.def)             Requested size: 99.58464pt x 99.58272pt.
-<imgs/Levels/4_normal_soft_sym8_Lenna.jpg, id=214, 513.92pt x 513.92pt>
+<imgs/Levels/4_normal_soft_sym8_Lenna.jpg, id=226, 513.92pt x 513.92pt>
 File: imgs/Levels/4_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
 <use imgs/Levels/4_normal_soft_sym8_Lenna.jpg>
 Package pdftex.def Info: imgs/Levels/4_normal_soft_sym8_Lenna.jpg  used on input line 96.
 (pdftex.def)             Requested size: 99.58464pt x 99.58272pt.
-<imgs/Levels/6_normal_soft_sym8_Lenna.jpg, id=215, 513.92pt x 513.92pt>
+<imgs/Levels/6_normal_soft_sym8_Lenna.jpg, id=227, 513.92pt x 513.92pt>
 File: imgs/Levels/6_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
 <use imgs/Levels/6_normal_soft_sym8_Lenna.jpg>
 Package pdftex.def Info: imgs/Levels/6_normal_soft_sym8_Lenna.jpg  used on input line 96.
 (pdftex.def)             Requested size: 99.58464pt x 99.58272pt.
  [6
 
- <./imgs/Levels/1_normal_soft_sym8_Lenna.jpg> <./imgs/Levels/2_normal_soft_sym8_Lenna.jpg> <./imgs/Levels/4_normal_soft_sym8_Lenna.jpg> <./imgs/Levels/6_normal_soft_sym8_Lenna.jpg>] [7
+ <./imgs/Levels/1_normal_soft_sym8_Lenna.jpg> <./imgs/Levels/2_normal_soft_sym8_Lenna.jpg> <./imgs/Levels/4_normal_soft_sym8_Lenna.jpg> <./imgs/Levels/6_normal_soft_sym8_Lenna.jpg>]
+File: imgs/Levels/2_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
+<use imgs/Levels/2_normal_soft_sym8_Lenna.jpg>
+Package pdftex.def Info: imgs/Levels/2_normal_soft_sym8_Lenna.jpg  used on input line 104.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+File: imgs/Levels/6_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
+<use imgs/Levels/6_normal_soft_sym8_Lenna.jpg>
+Package pdftex.def Info: imgs/Levels/6_normal_soft_sym8_Lenna.jpg  used on input line 104.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+ [7
+
+] [8
 
 ]
-<imgs/Modes/2_normal_soft_sym8_Wave.jpg, id=281, 513.92pt x 513.92pt>
+<imgs/Modes/2_normal_soft_sym8_Wave.jpg, id=328, 513.92pt x 513.92pt>
 File: imgs/Modes/2_normal_soft_sym8_Wave.jpg Graphic file (type jpg)
 <use imgs/Modes/2_normal_soft_sym8_Wave.jpg>
-Package pdftex.def Info: imgs/Modes/2_normal_soft_sym8_Wave.jpg  used on input line 127.
+Package pdftex.def Info: imgs/Modes/2_normal_soft_sym8_Wave.jpg  used on input line 135.
 (pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
-<imgs/Modes/2_normal_hard_sym8_Wave.jpg, id=282, 513.92pt x 513.92pt>
+<imgs/Modes/2_normal_hard_sym8_Wave.jpg, id=329, 513.92pt x 513.92pt>
 File: imgs/Modes/2_normal_hard_sym8_Wave.jpg Graphic file (type jpg)
 <use imgs/Modes/2_normal_hard_sym8_Wave.jpg>
-Package pdftex.def Info: imgs/Modes/2_normal_hard_sym8_Wave.jpg  used on input line 127.
+Package pdftex.def Info: imgs/Modes/2_normal_hard_sym8_Wave.jpg  used on input line 135.
 (pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
- [8
+ [9
 
- <./imgs/Modes/2_normal_soft_sym8_Wave.jpg> <./imgs/Modes/2_normal_hard_sym8_Wave.jpg>] [9
+ <./imgs/Modes/2_normal_soft_sym8_Wave.jpg> <./imgs/Modes/2_normal_hard_sym8_Wave.jpg>] [10
 
 ]
-<imgs/Thresholds/2_awt_soft_sym8_House.jpg, id=347, 513.92pt x 513.92pt>
+<imgs/Thresholds/2_awt_soft_sym8_House.jpg, id=396, 513.92pt x 513.92pt>
 File: imgs/Thresholds/2_awt_soft_sym8_House.jpg Graphic file (type jpg)
 <use imgs/Thresholds/2_awt_soft_sym8_House.jpg>
-Package pdftex.def Info: imgs/Thresholds/2_awt_soft_sym8_House.jpg  used on input line 166.
+Package pdftex.def Info: imgs/Thresholds/2_awt_soft_sym8_House.jpg  used on input line 174.
 (pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
-<imgs/Thresholds/2_normal_soft_sym8_House.jpg, id=348, 513.92pt x 513.92pt>
+<imgs/Thresholds/2_normal_soft_sym8_House.jpg, id=397, 513.92pt x 513.92pt>
 File: imgs/Thresholds/2_normal_soft_sym8_House.jpg Graphic file (type jpg)
 <use imgs/Thresholds/2_normal_soft_sym8_House.jpg>
-Package pdftex.def Info: imgs/Thresholds/2_normal_soft_sym8_House.jpg  used on input line 166.
+Package pdftex.def Info: imgs/Thresholds/2_normal_soft_sym8_House.jpg  used on input line 174.
 (pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
-<imgs/Thresholds/2_universal_soft_sym8_House.jpg, id=349, 513.92pt x 513.92pt>
+<imgs/Thresholds/2_universal_soft_sym8_House.jpg, id=398, 513.92pt x 513.92pt>
 File: imgs/Thresholds/2_universal_soft_sym8_House.jpg Graphic file (type jpg)
 <use imgs/Thresholds/2_universal_soft_sym8_House.jpg>
-Package pdftex.def Info: imgs/Thresholds/2_universal_soft_sym8_House.jpg  used on input line 166.
+Package pdftex.def Info: imgs/Thresholds/2_universal_soft_sym8_House.jpg  used on input line 174.
 (pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
-<imgs/Thresholds/2_bayes_soft_sym8_House.jpg, id=350, 513.92pt x 513.92pt>
+<imgs/Thresholds/2_bayes_soft_sym8_House.jpg, id=399, 513.92pt x 513.92pt>
 File: imgs/Thresholds/2_bayes_soft_sym8_House.jpg Graphic file (type jpg)
 <use imgs/Thresholds/2_bayes_soft_sym8_House.jpg>
-Package pdftex.def Info: imgs/Thresholds/2_bayes_soft_sym8_House.jpg  used on input line 166.
+Package pdftex.def Info: imgs/Thresholds/2_bayes_soft_sym8_House.jpg  used on input line 174.
 (pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
-<imgs/Thresholds/2_level_soft_sym8_House.jpg, id=351, 513.92pt x 513.92pt>
+<imgs/Thresholds/2_level_soft_sym8_House.jpg, id=400, 513.92pt x 513.92pt>
 File: imgs/Thresholds/2_level_soft_sym8_House.jpg Graphic file (type jpg)
 <use imgs/Thresholds/2_level_soft_sym8_House.jpg>
-Package pdftex.def Info: imgs/Thresholds/2_level_soft_sym8_House.jpg  used on input line 166.
+Package pdftex.def Info: imgs/Thresholds/2_level_soft_sym8_House.jpg  used on input line 174.
 (pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
- [10
+ [11
 
- <./imgs/Thresholds/2_awt_soft_sym8_House.jpg> <./imgs/Thresholds/2_normal_soft_sym8_House.jpg> <./imgs/Thresholds/2_universal_soft_sym8_House.jpg> <./imgs/Thresholds/2_bayes_soft_sym8_House.jpg> <./imgs/Thresholds/2_level_soft_sym8_House.jpg>] [11
+ <./imgs/Thresholds/2_awt_soft_sym8_House.jpg> <./imgs/Thresholds/2_normal_soft_sym8_House.jpg> <./imgs/Thresholds/2_universal_soft_sym8_House.jpg> <./imgs/Thresholds/2_bayes_soft_sym8_House.jpg> <./imgs/Thresholds/2_level_soft_sym8_House.jpg>] [12
 
 ]
-<imgs/Wavelets/2_normal_soft_db4_Lenna.jpg, id=416, 513.92pt x 513.92pt>
+<imgs/Wavelets/2_normal_soft_db4_Lenna.jpg, id=467, 513.92pt x 513.92pt>
 File: imgs/Wavelets/2_normal_soft_db4_Lenna.jpg Graphic file (type jpg)
 <use imgs/Wavelets/2_normal_soft_db4_Lenna.jpg>
-Package pdftex.def Info: imgs/Wavelets/2_normal_soft_db4_Lenna.jpg  used on input line 198.
-(pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
- [12
-
- <./imgs/Wavelets/2_normal_soft_db4_Lenna.jpg>]
-<imgs/Wavelets/2_normal_soft_haar_Lenna.jpg, id=449, 513.92pt x 513.92pt>
-File: imgs/Wavelets/2_normal_soft_haar_Lenna.jpg Graphic file (type jpg)
-<use imgs/Wavelets/2_normal_soft_haar_Lenna.jpg>
-Package pdftex.def Info: imgs/Wavelets/2_normal_soft_haar_Lenna.jpg  used on input line 209.
+Package pdftex.def Info: imgs/Wavelets/2_normal_soft_db4_Lenna.jpg  used on input line 206.
 (pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
  [13
 
- <./imgs/Wavelets/2_normal_soft_haar_Lenna.jpg>]
-<imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg, id=483, 513.92pt x 513.92pt>
-File: imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
-<use imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg>
-Package pdftex.def Info: imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg  used on input line 220.
+ <./imgs/Wavelets/2_normal_soft_db4_Lenna.jpg>]
+<imgs/Wavelets/2_normal_soft_haar_Lenna.jpg, id=502, 513.92pt x 513.92pt>
+File: imgs/Wavelets/2_normal_soft_haar_Lenna.jpg Graphic file (type jpg)
+<use imgs/Wavelets/2_normal_soft_haar_Lenna.jpg>
+Package pdftex.def Info: imgs/Wavelets/2_normal_soft_haar_Lenna.jpg  used on input line 217.
 (pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
  [14
 
- <./imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg>] [15
+ <./imgs/Wavelets/2_normal_soft_haar_Lenna.jpg>]
+<imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg, id=536, 513.92pt x 513.92pt>
+File: imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
+<use imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg>
+Package pdftex.def Info: imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg  used on input line 228.
+(pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
+ [15
 
-] [16
+ <./imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg>] [16
+
+] [17
 
 ]
+<imgs/Comparacion/wavelet_Lenna.jpg, id=635, 513.92pt x 513.92pt>
+File: imgs/Comparacion/wavelet_Lenna.jpg Graphic file (type jpg)
+<use imgs/Comparacion/wavelet_Lenna.jpg>
+Package pdftex.def Info: imgs/Comparacion/wavelet_Lenna.jpg  used on input line 274.
+(pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
+ [18
+
+ <./imgs/Comparacion/wavelet_Lenna.jpg>]
+<imgs/Comparacion/wiener_Lenna.jpg, id=669, 513.92pt x 513.92pt>
+File: imgs/Comparacion/wiener_Lenna.jpg Graphic file (type jpg)
+<use imgs/Comparacion/wiener_Lenna.jpg>
+Package pdftex.def Info: imgs/Comparacion/wiener_Lenna.jpg  used on input line 283.
+(pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
+ [19
+
+ <./imgs/Comparacion/wiener_Lenna.jpg>]
+<imgs/Comparacion/gaussian_Lenna.jpg, id=703, 513.92pt x 513.92pt>
+File: imgs/Comparacion/gaussian_Lenna.jpg Graphic file (type jpg)
+<use imgs/Comparacion/gaussian_Lenna.jpg>
+Package pdftex.def Info: imgs/Comparacion/gaussian_Lenna.jpg  used on input line 292.
+(pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
+ [20
+
+ <./imgs/Comparacion/gaussian_Lenna.jpg>]
+<imgs/Real-resize/1.jpg, id=736, 513.92pt x 513.92pt>
+File: imgs/Real-resize/1.jpg Graphic file (type jpg)
+<use imgs/Real-resize/1.jpg>
+Package pdftex.def Info: imgs/Real-resize/1.jpg  used on input line 302.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<imgs/Real/1.jpg, id=737, 513.92pt x 513.92pt>
+File: imgs/Real/1.jpg Graphic file (type jpg)
+<use imgs/Real/1.jpg>
+Package pdftex.def Info: imgs/Real/1.jpg  used on input line 302.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+ [21
+
+ <./imgs/Real-resize/1.jpg> <./imgs/Real/1.jpg>]
+<imgs/Real-resize/0.jpg, id=770, 513.92pt x 513.92pt>
+File: imgs/Real-resize/0.jpg Graphic file (type jpg)
+<use imgs/Real-resize/0.jpg>
+Package pdftex.def Info: imgs/Real-resize/0.jpg  used on input line 309.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<imgs/Real/0.jpg, id=771, 513.92pt x 513.92pt>
+File: imgs/Real/0.jpg Graphic file (type jpg)
+<use imgs/Real/0.jpg>
+Package pdftex.def Info: imgs/Real/0.jpg  used on input line 309.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+ [22
+
+ <./imgs/Real-resize/0.jpg> <./imgs/Real/0.jpg>]
 \tf@nav=\write6
 \openout6 = `presentacion.nav'.
 
@@ -891,29 +950,29 @@ Package pdftex.def Info: imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg  used on inp
 \tf@snm=\write8
 \openout8 = `presentacion.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 246.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 246.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 313.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 313.
  (/home/lautaro/Documents/Facultad/DSP/wavelet/presentacion/build/presentacion.aux
 LaTeX Info: Redefining \. on input line 25.
 LaTeX Info: Redefining \% on input line 25.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 246.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 246.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 313.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 313.
 Package rerunfilecheck Info: File `presentacion.out' has not changed.
-(rerunfilecheck)             Checksum: 28186B402495DFD776A11D0BD13435D0;341.
+(rerunfilecheck)             Checksum: E5B265A78C48369BB816E686007C2500;406.
  ) 
 Here is how much of TeX's memory you used:
- 19271 strings out of 480798
- 368638 string characters out of 2904528
- 634924 words of memory out of 3000000
- 34743 multiletter control sequences out of 15000+200000
+ 19333 strings out of 480798
+ 369806 string characters out of 2904528
+ 635980 words of memory out of 3000000
+ 34787 multiletter control sequences out of 15000+200000
  541027 words of font info for 55 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  58i,16n,67p,864b,595s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
-Output written on /home/lautaro/Documents/Facultad/DSP/wavelet/presentacion/build/presentacion.pdf (16 pages, 1384650 bytes).
+Output written on /home/lautaro/Documents/Facultad/DSP/wavelet/presentacion/build/presentacion.pdf (22 pages, 2174172 bytes).
 PDF statistics:
- 609 PDF objects out of 1000 (max. 8388607)
- 39 named destinations out of 1000 (max. 500000)
- 161 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 838 PDF objects out of 1000 (max. 8388607)
+ 52 named destinations out of 1000 (max. 500000)
+ 204 words of extra memory for PDF output out of 10000 (max. 10000000)
 

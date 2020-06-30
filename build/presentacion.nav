@@ -41,12 +41,26 @@
 \headcommand {\beamer@framepages {14}{14}}
 \headcommand {\slideentry {3}{2}{11}{15/15}{Parametros optimos}{0}}
 \headcommand {\beamer@framepages {15}{15}}
-\headcommand {\beamer@subsectionpages {5}{15}}
-\headcommand {\beamer@subsectionentry {0}{3}{3}{16}{Comparacion de filtros}}
-\headcommand {\slideentry {3}{3}{1}{16/16}{Comparacion de filtros}{0}}
+\headcommand {\slideentry {3}{2}{12}{16/16}{Parametros optimos}{0}}
 \headcommand {\beamer@framepages {16}{16}}
-\headcommand {\beamer@partpages {1}{16}}
-\headcommand {\beamer@subsectionpages {17}{16}}
-\headcommand {\beamer@sectionpages {17}{16}}
-\headcommand {\beamer@documentpages {16}}
-\headcommand {\gdef \inserttotalframenumber {16}}
+\headcommand {\beamer@subsectionpages {5}{16}}
+\headcommand {\beamer@subsectionentry {0}{3}{3}{17}{Comparacion de filtros}}
+\headcommand {\slideentry {3}{3}{1}{17/17}{Comparacion de filtros}{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\slideentry {3}{3}{2}{18/18}{Comparacion de filtros}{0}}
+\headcommand {\beamer@framepages {18}{18}}
+\headcommand {\slideentry {3}{3}{3}{19/19}{Comparacion de filtros}{0}}
+\headcommand {\beamer@framepages {19}{19}}
+\headcommand {\slideentry {3}{3}{4}{20/20}{Comparacion de filtros}{0}}
+\headcommand {\beamer@framepages {20}{20}}
+\headcommand {\beamer@subsectionpages {17}{20}}
+\headcommand {\beamer@subsectionentry {0}{3}{4}{21}{Imagenes reales}}
+\headcommand {\slideentry {3}{4}{1}{21/21}{Imagenes reales}{0}}
+\headcommand {\beamer@framepages {21}{21}}
+\headcommand {\slideentry {3}{4}{2}{22/22}{Imagenes reales}{0}}
+\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\beamer@partpages {1}{22}}
+\headcommand {\beamer@subsectionpages {23}{22}}
+\headcommand {\beamer@sectionpages {23}{22}}
+\headcommand {\beamer@documentpages {22}}
+\headcommand {\gdef \inserttotalframenumber {22}}
