@@ -1,6 +1,6 @@
 \documentclass{beamer}
 \usepackage[spanish]{babel}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{booktabs}
 \usepackage{graphicx}
 
@@ -46,6 +46,103 @@
   \end{frame}
 
   \section{Marco Teorico}
+  \subsection{Analisis Multiresolucion}
+  
+  
+  \begin{frame}
+   \frametitle{ Análisis Multiresolución }
+   Un análisis multiresolución para $L^{2}(\mathbb{R})$ consiste en una secuencia de subespacios cerrados de $L^{2}(\mathbb{R})$, $\{ V_{j} \}_{j \in \mathbb{Z} }$, una función  una función $\phi \in V_{0}$ tal que se cumplan las siguientes condiciones:
+
+   \begin{itemize}
+   \item[i.] Los espacios $V_{j}$ están anidados, es decir:
+   \begin{equation*}
+   ... \subset V_{-1} \subset V_{0} \subset V_{1} ...
+   \end{equation*}
+   \item[ii.] $\overline{\cup _{j\in \mathbb Z}V_j} = L^2(\mathbb R)$ y $\cap {j\in \mathbb Z}V_j = {0}$
+   \item[iii.] Para todo $j \in \mathbb{Z}$, $V_{j-1}=D(V_j)$
+   \item[iv.] $f \in V_0 \rightarrow T_kf \in V_o$, $\forall k \in \mathbb{Z}$
+   \item[v.] $\{T_k \phi \}_{k \in \mathbb{Z}}$ es una base ortonormal de $V_0$
+   \end{itemize} 
+  \end{frame}
+\begin{frame}
+  \frametitle{Análisis Multiresolución}
+ Se define a $W_j$ como el complemento ortogonal de $V_j$ en $V_{j-1}$
+  \begin{equation}
+    \label{Central}
+    V_{j-1} = V_j \oplus W_j
+  \end{equation}
+  \begin{equation}
+    \label{NivApDet}
+    A_{j-1}(t) = A_j(t) + D_j(t) 
+  \end{equation} 
+Por otro lado:
+\begin{equation}
+  V_J = V_K \oplus W_K \oplus ... \oplus W_{J+1}, \: J<K
+  \label{eq.Vj}
+  \end{equation}
+Finalmente:
+\begin{equation}
+  x(t) = A_J(t) + \sum_{j=-\infty}^{J}D_j(t)
+  \end{equation}
+
+\end{frame}
+\begin{frame}
+\frametitle{Análisis Multiresolución}
+$\rightarrow$ Vemos ejemplo en el toolbox de Matlab
+  
+Para continuar:
+\begin{itemize}
+  \item 
+  \begin{equation}
+    A_j(t)=\sum_{k \in \mathbb Z} \beta _{j,k} \phi _{j,k}(t)
+  \end{equation}
+  Donde:
+  \begin{equation}
+    \label{Beta}
+    \beta _{j,k}= <x(t), \phi _{j,k}(t)>
+  \end{equation}
+
+  \item
+  \begin{equation}
+    D_j(t)=\sum_{k \in \mathbb Z} \alpha _{j,k} \psi _{j,k}(t)
+  \end{equation}
+  Donde:
+  \begin{equation}
+    \label{Alfa}
+    \alpha _{j,k}= <x(t), \psi _{j,k}(t)>
+  \end{equation}
+\end{itemize}
+La función $\psi \in L^{2}(\mathbb{R})$ y $\{T_k \psi \}_{k \in \mathbb{Z}}$ son una base ortonormal de $W_0$
+\end{frame}
+
+\begin{frame}
+\subsection{Umbralización}
+\frametitle{Umbralización}
+\centering
+\begin{figure}[htb]
+  \centering
+  \includegraphics[scale=0.4]{imgs/Umbral}
+  \caption{Modos de umbralización más utilizados}
+  \label{}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Umbralización}
+Algortimos para el cálculo del umbral $\tau$:
+\begin{itemize}
+  \item VisuShrink
+  \item LevelShrink
+  \item BayesShrink
+  \item NormalShrink
+  \item AWT(Adaptative Wavelet Treshholding)
+\end{itemize}
+  
+
+\end{frame}
+
+
+
 
   \section{Implementacion}
 

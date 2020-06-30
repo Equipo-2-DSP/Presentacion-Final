@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7445) (preloaded format=pdflatex 2020.6.27)  30 JUN 2020 10:35
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 2.9.7445) (preloaded format=pdflatex 2020.6.27)  30 JUN 2020 19:21
 entering extended mode
 **/home/lautaro/Documents/Facultad/DSP/wavelet/presentacion/presentacion.tex
 (/home/lautaro/Documents/Facultad/DSP/wavelet/presentacion/presentacion.tex
@@ -525,9 +525,7 @@ Package babel Info: Making > an active character on input line 707.
 Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks45
 \inpenc@posthook=\toks46
- (/usr/local/share/miktex-texmf/tex/latex/base/latin1.def
-File: latin1.def 2018/08/11 v1.3c Input encoding file
-)) (/home/lautaro/.miktex/texmfs/install/tex/latex/booktabs/booktabs.sty
+) (/home/lautaro/.miktex/texmfs/install/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen278
 \lightrulewidth=\dimen279
@@ -816,41 +814,30 @@ Overfull \hbox (2.53174pt too wide) has occurred while \output is active
 [6
 
 ]
+<imgs/Umbral.png, id=291, 714.41907pt x 249.18094pt>
+File: imgs/Umbral.png Graphic file (type png)
+<use imgs/Umbral.png>
+Package pdftex.def Info: imgs/Umbral.png  used on input line 128.
+(pdftex.def)             Requested size: 285.76256pt x 99.6706pt.
+
+
+Package hyperref Warning: Ignoring empty anchor on input line 128.
+
+
 Overfull \hbox (2.53174pt too wide) has occurred while \output is active
  []\OT1/cmss/m/n/6 Implementacion  
  []
 
 [7
 
-]
-<imgs/Levels/1_normal_soft_sym8_Lenna.jpg, id=289, 513.92pt x 513.92pt>
-File: imgs/Levels/1_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
-<use imgs/Levels/1_normal_soft_sym8_Lenna.jpg>
-Package pdftex.def Info: imgs/Levels/1_normal_soft_sym8_Lenna.jpg  used on input line 123.
-(pdftex.def)             Requested size: 99.58464pt x 99.58272pt.
-<imgs/Levels/2_normal_soft_sym8_Lenna.jpg, id=290, 513.92pt x 513.92pt>
-File: imgs/Levels/2_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
-<use imgs/Levels/2_normal_soft_sym8_Lenna.jpg>
-Package pdftex.def Info: imgs/Levels/2_normal_soft_sym8_Lenna.jpg  used on input line 123.
-(pdftex.def)             Requested size: 99.58464pt x 99.58272pt.
-<imgs/Levels/4_normal_soft_sym8_Lenna.jpg, id=291, 513.92pt x 513.92pt>
-File: imgs/Levels/4_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
-<use imgs/Levels/4_normal_soft_sym8_Lenna.jpg>
-Package pdftex.def Info: imgs/Levels/4_normal_soft_sym8_Lenna.jpg  used on input line 123.
-(pdftex.def)             Requested size: 99.58464pt x 99.58272pt.
-<imgs/Levels/6_normal_soft_sym8_Lenna.jpg, id=292, 513.92pt x 513.92pt>
-File: imgs/Levels/6_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
-<use imgs/Levels/6_normal_soft_sym8_Lenna.jpg>
-Package pdftex.def Info: imgs/Levels/6_normal_soft_sym8_Lenna.jpg  used on input line 123.
-(pdftex.def)             Requested size: 99.58464pt x 99.58272pt.
-
+ <./imgs/Umbral.png>]
 Overfull \hbox (2.53174pt too wide) has occurred while \output is active
  []\OT1/cmss/m/n/6 Implementacion  
  []
 
 [8
 
- <./imgs/Levels/1_normal_soft_sym8_Lenna.jpg> <./imgs/Levels/2_normal_soft_sym8_Lenna.jpg> <./imgs/Levels/4_normal_soft_sym8_Lenna.jpg> <./imgs/Levels/6_normal_soft_sym8_Lenna.jpg>]
+]
 Overfull \hbox (2.53174pt too wide) has occurred while \output is active
  []\OT1/cmss/m/n/6 Implementacion  
  []
@@ -858,24 +845,13 @@ Overfull \hbox (2.53174pt too wide) has occurred while \output is active
 [9
 
 ]
-<imgs/Modes/2_normal_soft_sym8_Wave.jpg, id=359, 513.92pt x 513.92pt>
-File: imgs/Modes/2_normal_soft_sym8_Wave.jpg Graphic file (type jpg)
-<use imgs/Modes/2_normal_soft_sym8_Wave.jpg>
-Package pdftex.def Info: imgs/Modes/2_normal_soft_sym8_Wave.jpg  used on input line 154.
-(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
-<imgs/Modes/2_normal_hard_sym8_Wave.jpg, id=360, 513.92pt x 513.92pt>
-File: imgs/Modes/2_normal_hard_sym8_Wave.jpg Graphic file (type jpg)
-<use imgs/Modes/2_normal_hard_sym8_Wave.jpg>
-Package pdftex.def Info: imgs/Modes/2_normal_hard_sym8_Wave.jpg  used on input line 154.
-(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
-
 Overfull \hbox (2.53174pt too wide) has occurred while \output is active
  []\OT1/cmss/m/n/6 Implementacion  
  []
 
 [10
 
- <./imgs/Modes/2_normal_soft_sym8_Wave.jpg> <./imgs/Modes/2_normal_hard_sym8_Wave.jpg>]
+]
 Overfull \hbox (2.53174pt too wide) has occurred while \output is active
  []\OT1/cmss/m/n/6 Implementacion  
  []
@@ -883,64 +859,58 @@ Overfull \hbox (2.53174pt too wide) has occurred while \output is active
 [11
 
 ]
-<imgs/Thresholds/2_awt_soft_sym8_House.jpg, id=427, 513.92pt x 513.92pt>
-File: imgs/Thresholds/2_awt_soft_sym8_House.jpg Graphic file (type jpg)
-<use imgs/Thresholds/2_awt_soft_sym8_House.jpg>
-Package pdftex.def Info: imgs/Thresholds/2_awt_soft_sym8_House.jpg  used on input line 193.
-(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
-<imgs/Thresholds/2_normal_soft_sym8_House.jpg, id=428, 513.92pt x 513.92pt>
-File: imgs/Thresholds/2_normal_soft_sym8_House.jpg Graphic file (type jpg)
-<use imgs/Thresholds/2_normal_soft_sym8_House.jpg>
-Package pdftex.def Info: imgs/Thresholds/2_normal_soft_sym8_House.jpg  used on input line 193.
-(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
-<imgs/Thresholds/2_universal_soft_sym8_House.jpg, id=429, 513.92pt x 513.92pt>
-File: imgs/Thresholds/2_universal_soft_sym8_House.jpg Graphic file (type jpg)
-<use imgs/Thresholds/2_universal_soft_sym8_House.jpg>
-Package pdftex.def Info: imgs/Thresholds/2_universal_soft_sym8_House.jpg  used on input line 193.
-(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
-<imgs/Thresholds/2_bayes_soft_sym8_House.jpg, id=430, 513.92pt x 513.92pt>
-File: imgs/Thresholds/2_bayes_soft_sym8_House.jpg Graphic file (type jpg)
-<use imgs/Thresholds/2_bayes_soft_sym8_House.jpg>
-Package pdftex.def Info: imgs/Thresholds/2_bayes_soft_sym8_House.jpg  used on input line 193.
-(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
-<imgs/Thresholds/2_level_soft_sym8_House.jpg, id=431, 513.92pt x 513.92pt>
-File: imgs/Thresholds/2_level_soft_sym8_House.jpg Graphic file (type jpg)
-<use imgs/Thresholds/2_level_soft_sym8_House.jpg>
-Package pdftex.def Info: imgs/Thresholds/2_level_soft_sym8_House.jpg  used on input line 193.
-(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
-
 Overfull \hbox (2.53174pt too wide) has occurred while \output is active
  []\OT1/cmss/m/n/6 Implementacion  
  []
 
 [12
 
- <./imgs/Thresholds/2_awt_soft_sym8_House.jpg> <./imgs/Thresholds/2_normal_soft_sym8_House.jpg> <./imgs/Thresholds/2_universal_soft_sym8_House.jpg> <./imgs/Thresholds/2_bayes_soft_sym8_House.jpg> <./imgs/Thresholds/2_level_soft_sym8_House.jpg>]
+]
+<imgs/Levels/1_normal_soft_sym8_Lenna.jpg, id=503, 513.92pt x 513.92pt>
+File: imgs/Levels/1_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
+<use imgs/Levels/1_normal_soft_sym8_Lenna.jpg>
+Package pdftex.def Info: imgs/Levels/1_normal_soft_sym8_Lenna.jpg  used on input line 220.
+(pdftex.def)             Requested size: 99.58464pt x 99.58272pt.
+<imgs/Levels/2_normal_soft_sym8_Lenna.jpg, id=504, 513.92pt x 513.92pt>
+File: imgs/Levels/2_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
+<use imgs/Levels/2_normal_soft_sym8_Lenna.jpg>
+Package pdftex.def Info: imgs/Levels/2_normal_soft_sym8_Lenna.jpg  used on input line 220.
+(pdftex.def)             Requested size: 99.58464pt x 99.58272pt.
+<imgs/Levels/4_normal_soft_sym8_Lenna.jpg, id=505, 513.92pt x 513.92pt>
+File: imgs/Levels/4_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
+<use imgs/Levels/4_normal_soft_sym8_Lenna.jpg>
+Package pdftex.def Info: imgs/Levels/4_normal_soft_sym8_Lenna.jpg  used on input line 220.
+(pdftex.def)             Requested size: 99.58464pt x 99.58272pt.
+<imgs/Levels/6_normal_soft_sym8_Lenna.jpg, id=506, 513.92pt x 513.92pt>
+File: imgs/Levels/6_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
+<use imgs/Levels/6_normal_soft_sym8_Lenna.jpg>
+Package pdftex.def Info: imgs/Levels/6_normal_soft_sym8_Lenna.jpg  used on input line 220.
+(pdftex.def)             Requested size: 99.58464pt x 99.58272pt.
+
 Overfull \hbox (2.53174pt too wide) has occurred while \output is active
  []\OT1/cmss/m/n/6 Implementacion  
  []
 
 [13
 
-]
-<imgs/Wavelets/2_normal_soft_db4_Lenna.jpg, id=499, 513.92pt x 513.92pt>
-File: imgs/Wavelets/2_normal_soft_db4_Lenna.jpg Graphic file (type jpg)
-<use imgs/Wavelets/2_normal_soft_db4_Lenna.jpg>
-Package pdftex.def Info: imgs/Wavelets/2_normal_soft_db4_Lenna.jpg  used on input line 225.
-(pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
-
+ <./imgs/Levels/1_normal_soft_sym8_Lenna.jpg> <./imgs/Levels/2_normal_soft_sym8_Lenna.jpg> <./imgs/Levels/4_normal_soft_sym8_Lenna.jpg> <./imgs/Levels/6_normal_soft_sym8_Lenna.jpg>]
 Overfull \hbox (2.53174pt too wide) has occurred while \output is active
  []\OT1/cmss/m/n/6 Implementacion  
  []
 
 [14
 
- <./imgs/Wavelets/2_normal_soft_db4_Lenna.jpg>]
-<imgs/Wavelets/2_normal_soft_haar_Lenna.jpg, id=533, 513.92pt x 513.92pt>
-File: imgs/Wavelets/2_normal_soft_haar_Lenna.jpg Graphic file (type jpg)
-<use imgs/Wavelets/2_normal_soft_haar_Lenna.jpg>
-Package pdftex.def Info: imgs/Wavelets/2_normal_soft_haar_Lenna.jpg  used on input line 236.
-(pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
+]
+<imgs/Modes/2_normal_soft_sym8_Wave.jpg, id=578, 513.92pt x 513.92pt>
+File: imgs/Modes/2_normal_soft_sym8_Wave.jpg Graphic file (type jpg)
+<use imgs/Modes/2_normal_soft_sym8_Wave.jpg>
+Package pdftex.def Info: imgs/Modes/2_normal_soft_sym8_Wave.jpg  used on input line 251.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
+<imgs/Modes/2_normal_hard_sym8_Wave.jpg, id=579, 513.92pt x 513.92pt>
+File: imgs/Modes/2_normal_hard_sym8_Wave.jpg Graphic file (type jpg)
+<use imgs/Modes/2_normal_hard_sym8_Wave.jpg>
+Package pdftex.def Info: imgs/Modes/2_normal_hard_sym8_Wave.jpg  used on input line 251.
+(pdftex.def)             Requested size: 142.26378pt x 142.26552pt.
 
 Overfull \hbox (2.53174pt too wide) has occurred while \output is active
  []\OT1/cmss/m/n/6 Implementacion  
@@ -948,32 +918,105 @@ Overfull \hbox (2.53174pt too wide) has occurred while \output is active
 
 [15
 
- <./imgs/Wavelets/2_normal_soft_haar_Lenna.jpg>]
-<imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg, id=567, 513.92pt x 513.92pt>
-File: imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
-<use imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg>
-Package pdftex.def Info: imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg  used on input line 247.
-(pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
-
+ <./imgs/Modes/2_normal_soft_sym8_Wave.jpg> <./imgs/Modes/2_normal_hard_sym8_Wave.jpg>]
 Overfull \hbox (2.53174pt too wide) has occurred while \output is active
  []\OT1/cmss/m/n/6 Implementacion  
  []
 
 [16
 
- <./imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg>]
+]
+<imgs/Thresholds/2_awt_soft_sym8_House.jpg, id=650, 513.92pt x 513.92pt>
+File: imgs/Thresholds/2_awt_soft_sym8_House.jpg Graphic file (type jpg)
+<use imgs/Thresholds/2_awt_soft_sym8_House.jpg>
+Package pdftex.def Info: imgs/Thresholds/2_awt_soft_sym8_House.jpg  used on input line 290.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<imgs/Thresholds/2_normal_soft_sym8_House.jpg, id=651, 513.92pt x 513.92pt>
+File: imgs/Thresholds/2_normal_soft_sym8_House.jpg Graphic file (type jpg)
+<use imgs/Thresholds/2_normal_soft_sym8_House.jpg>
+Package pdftex.def Info: imgs/Thresholds/2_normal_soft_sym8_House.jpg  used on input line 290.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<imgs/Thresholds/2_universal_soft_sym8_House.jpg, id=652, 513.92pt x 513.92pt>
+File: imgs/Thresholds/2_universal_soft_sym8_House.jpg Graphic file (type jpg)
+<use imgs/Thresholds/2_universal_soft_sym8_House.jpg>
+Package pdftex.def Info: imgs/Thresholds/2_universal_soft_sym8_House.jpg  used on input line 290.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<imgs/Thresholds/2_bayes_soft_sym8_House.jpg, id=653, 513.92pt x 513.92pt>
+File: imgs/Thresholds/2_bayes_soft_sym8_House.jpg Graphic file (type jpg)
+<use imgs/Thresholds/2_bayes_soft_sym8_House.jpg>
+Package pdftex.def Info: imgs/Thresholds/2_bayes_soft_sym8_House.jpg  used on input line 290.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+<imgs/Thresholds/2_level_soft_sym8_House.jpg, id=654, 513.92pt x 513.92pt>
+File: imgs/Thresholds/2_level_soft_sym8_House.jpg Graphic file (type jpg)
+<use imgs/Thresholds/2_level_soft_sym8_House.jpg>
+Package pdftex.def Info: imgs/Thresholds/2_level_soft_sym8_House.jpg  used on input line 290.
+(pdftex.def)             Requested size: 85.35826pt x 85.35774pt.
+
 Overfull \hbox (2.53174pt too wide) has occurred while \output is active
  []\OT1/cmss/m/n/6 Implementacion  
  []
 
 [17
 
-]
+ <./imgs/Thresholds/2_awt_soft_sym8_House.jpg> <./imgs/Thresholds/2_normal_soft_sym8_House.jpg> <./imgs/Thresholds/2_universal_soft_sym8_House.jpg> <./imgs/Thresholds/2_bayes_soft_sym8_House.jpg> <./imgs/Thresholds/2_level_soft_sym8_House.jpg>]
 Overfull \hbox (2.53174pt too wide) has occurred while \output is active
  []\OT1/cmss/m/n/6 Implementacion  
  []
 
 [18
+
+]
+<imgs/Wavelets/2_normal_soft_db4_Lenna.jpg, id=725, 513.92pt x 513.92pt>
+File: imgs/Wavelets/2_normal_soft_db4_Lenna.jpg Graphic file (type jpg)
+<use imgs/Wavelets/2_normal_soft_db4_Lenna.jpg>
+Package pdftex.def Info: imgs/Wavelets/2_normal_soft_db4_Lenna.jpg  used on input line 322.
+(pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
+
+Overfull \hbox (2.53174pt too wide) has occurred while \output is active
+ []\OT1/cmss/m/n/6 Implementacion  
+ []
+
+[19
+
+ <./imgs/Wavelets/2_normal_soft_db4_Lenna.jpg>]
+<imgs/Wavelets/2_normal_soft_haar_Lenna.jpg, id=762, 513.92pt x 513.92pt>
+File: imgs/Wavelets/2_normal_soft_haar_Lenna.jpg Graphic file (type jpg)
+<use imgs/Wavelets/2_normal_soft_haar_Lenna.jpg>
+Package pdftex.def Info: imgs/Wavelets/2_normal_soft_haar_Lenna.jpg  used on input line 333.
+(pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
+
+Overfull \hbox (2.53174pt too wide) has occurred while \output is active
+ []\OT1/cmss/m/n/6 Implementacion  
+ []
+
+[20
+
+ <./imgs/Wavelets/2_normal_soft_haar_Lenna.jpg>]
+<imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg, id=798, 513.92pt x 513.92pt>
+File: imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg Graphic file (type jpg)
+<use imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg>
+Package pdftex.def Info: imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg  used on input line 344.
+(pdftex.def)             Requested size: 170.71652pt x 170.71548pt.
+
+Overfull \hbox (2.53174pt too wide) has occurred while \output is active
+ []\OT1/cmss/m/n/6 Implementacion  
+ []
+
+[21
+
+ <./imgs/Wavelets/2_normal_soft_sym8_Lenna.jpg>]
+Overfull \hbox (2.53174pt too wide) has occurred while \output is active
+ []\OT1/cmss/m/n/6 Implementacion  
+ []
+
+[22
+
+]
+Overfull \hbox (2.53174pt too wide) has occurred while \output is active
+ []\OT1/cmss/m/n/6 Implementacion  
+ []
+
+[23
 
 ]
 \tf@nav=\write6
@@ -985,29 +1028,29 @@ Overfull \hbox (2.53174pt too wide) has occurred while \output is active
 \tf@snm=\write8
 \openout8 = `presentacion.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 273.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 273.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 370.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 370.
  (/home/lautaro/Documents/Facultad/DSP/wavelet/presentacion/build/presentacion.aux
 LaTeX Info: Redefining \. on input line 25.
 LaTeX Info: Redefining \% on input line 25.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 273.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 273.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 370.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 370.
 Package rerunfilecheck Info: File `presentacion.out' has not changed.
-(rerunfilecheck)             Checksum: 17311FFBE00BFD76C680804C6E215D91;390.
+(rerunfilecheck)             Checksum: AECAB150A0BE455A77D47473956D84C1;530.
  ) 
 Here is how much of TeX's memory you used:
- 19309 strings out of 480798
- 369503 string characters out of 2904528
- 635925 words of memory out of 3000000
- 34776 multiletter control sequences out of 15000+200000
+ 19379 strings out of 480798
+ 370479 string characters out of 2904528
+ 636255 words of memory out of 3000000
+ 34829 multiletter control sequences out of 15000+200000
  541027 words of font info for 55 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 58i,16n,67p,864b,595s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy6.pfb>
-Output written on /home/lautaro/Documents/Facultad/DSP/wavelet/presentacion/build/presentacion.pdf (18 pages, 1403313 bytes).
+ 58i,16n,67p,864b,596s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmss8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmssbx10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmssi10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmssi8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/share/miktex-texmf/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on /home/lautaro/Documents/Facultad/DSP/wavelet/presentacion/build/presentacion.pdf (23 pages, 1559134 bytes).
 PDF statistics:
- 697 PDF objects out of 1000 (max. 8388607)
- 44 named destinations out of 1000 (max. 500000)
- 169 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 958 PDF objects out of 1000 (max. 8388607)
+ 61 named destinations out of 1000 (max. 500000)
+ 190 words of extra memory for PDF output out of 10000 (max. 10000000)
 
