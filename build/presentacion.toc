@@ -1,7 +1,9 @@
 \babel@toc {spanish}{}
 \beamer@sectionintoc {1}{Resumen}{3}{0}{1}
 \beamer@sectionintoc {2}{Marco Teorico}{4}{0}{2}
-\beamer@sectionintoc {3}{Resultados}{4}{0}{3}
-\beamer@subsectionintoc {3}{1}{Imagenes de prueba}{4}{0}{3}
-\beamer@subsectionintoc {3}{2}{Parametros optimos}{5}{0}{3}
-\beamer@subsectionintoc {3}{3}{Comparacion de filtros}{16}{0}{3}
+\beamer@subsectionintoc {2}{1}{Analisis Multiresolucion}{4}{0}{2}
+\beamer@subsectionintoc {2}{2}{Umbralización}{7}{0}{2}
+\beamer@sectionintoc {3}{Resultados}{9}{0}{3}
+\beamer@subsectionintoc {3}{1}{Imagenes de prueba}{9}{0}{3}
+\beamer@subsectionintoc {3}{2}{Parametros optimos}{10}{0}{3}
+\beamer@subsectionintoc {3}{3}{Comparacion de filtros}{21}{0}{3}
