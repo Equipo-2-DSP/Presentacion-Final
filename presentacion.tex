@@ -9,16 +9,16 @@
 \newcommand{\spaced}{\hspace{.2cm}}
 
 
-\title{Filtrado de ruido en imagenes con transformada de Wavelet}
+\title{Filtrado de ruido en imágenes con transformada de wavelet}
 \author{
-  G.Isaias $^1$ \and   
-  M.Santiago $^2$ \and 
-  S.Lautaro Andres $^3$ \and
-  V.Xavier $^4$ 
+  G.Isaias \and   
+  M.Santiago \and 
+  S.Lautaro Andres \and
+  V.Xavier 
 }
 \institute{
-  $^{1-2-3-4}$ Universidad Nacional del Comahue \\ 
-  Buenos Aires , Neuquen \\ 
+  Universidad Nacional del Comahue \\ 
+  Buenos Aires 14000, Neuquen \\ 
 }
 \date{}
 
@@ -36,21 +36,97 @@
   \end{frame}
 
   \section{Resumen}
+\begin{frame}
+\begin{block}{Resumen}
+Los objetivos de esta presentación son:
+\begin{itemize}
+\item Dar una introducción a las funciones wavelets y transformada wavelet.
+\item Estudiar y utilizar distintos umbrales para el filtrado de ruido.
+\item Utilizar la transformada wavelet para filtrar ruido en imágenes.
+\item Comparar este método de filtrado con otros.
+\end{itemize}
+\end{block}
+\end{frame}
 
-  \begin{frame}
-    \frametitle{Resumen}
+\section{Introducción}
+\begin{frame}{Introducción a la transformada wavelet}
+\begin{block}{Analogía con Fourier}
+
+\begin{equation}
+Fourier \rightarrow X(\omega) = \int_{-\infty}^{+\infty} x(t) e^{-j \omega t} dt
+\end{equation}
+
+\begin{equation}
+ Wavelet \rightarrow X(a,b) = \int_{-\infty}^{+\infty} x(t) \overline{\psi_{a,b} (t)} dt
+\end{equation}
+
+\end{block}
+\end{frame}
+
+\begin{frame}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=6.5cm]{imgs/FvsW1}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=6.5cm]{imgs/FvsW2}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=6.5cm]{imgs/FvsW3}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=6.5cm]{imgs/FvsW4}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth, height=6.5cm]{imgs/FvsW5}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+
+\begin{block}{Matemáticamente...}
+\begin{equation}
+\psi_{a,b}(t)= \frac{1}{\sqrt{a}} \psi \left( \frac{t-b}{a} \right) \quad a,b \in \mathbb{R} \quad ; a \not = 0. 
+\end{equation}
+
+
+Si $a=2$ y $b=1$:
+
+\begin{equation}
+\psi_{j,k}(t) = 2^{-j/2} \psi (2^{-j} t-k )
+\end{equation}
+
+Las funciones $\{\psi_{j,k}\}_{\{j,k\} \in \mathbb Z }$ forman una base ortonormal de $L^2(\mathbb R)$.
+\end{block}
+
+\end{frame}
     
-    Resumen del trabajo ( alguna imagen que represente nuestro trabajo )
-    Sugerencia usar a lenna
-  
-  \end{frame} 
 
-  \section{Marco Teorico}
-  \subsection{Analisis Multiresolucion}
+  \section{Marco Teórico}
+  \subsection{Análisis multiresolución}
    
   
   \begin{frame}
-   \frametitle{ Análisis Multiresolución }
+   \frametitle{ Análisis multiresolución }
    Un análisis multiresolución para $L^{2}(\mathbb{R})$ consiste en una secuencia de subespacios cerrados de $L^{2}(\mathbb{R})$, $\{ V_{j} \}_{j \in \mathbb{Z} }$, una función  una función $\phi \in V_{0}$ tal que se cumplan las siguientes condiciones:
 
    \begin{itemize}
@@ -65,7 +141,7 @@
    \end{itemize} 
   \end{frame}
 \begin{frame}
-  \frametitle{Análisis Multiresolución}
+  \frametitle{Análisis multiresolución}
  Se define a $W_j$ como el complemento ortogonal de $V_j$ en $V_{j-1}$
   \begin{equation}
     \label{Central}
@@ -87,7 +163,7 @@ Finalmente:
 
 \end{frame}
 \begin{frame}
-\frametitle{Análisis Multiresolución}
+\frametitle{Análisis multiresolución}
 $\rightarrow$ Vemos ejemplo en el toolbox de Matlab
   
 Para continuar:
@@ -119,7 +195,7 @@ La función $\psi \in L^{2}(\mathbb{R})$ y $\{T_k \psi \}_{k \in \mathbb{Z}}$ so
 \subsection{Banco de filtros}
   
   \begin{frame}
-    \frametitle{¿Comó solucionamos el inconveniente del producto interno?}
+    \frametitle{¿Cómo solucionamos el inconveniente del producto interno?}
     
     Estrategia: Algoritmo que relacione las bases ortonormales y la idea de banco de filtros.
       
@@ -150,7 +226,7 @@ d^{j}_{k}= <A_{j}(t), \psi _{j,k}(t)>
     \end{frame}
     
   \begin{frame}
-   Podemos obtener $a^{j}$y $d^{j}$ a partir de $A_{j-1}$, partiendo de del 	producto interno de $A_{j-1}$ y las funciones de escala y wavelet
+   Podemos obtener $a^{j}$y $d^{j}$ a partir de $A_{j-1}$, partiendo del producto interno de $A_{j-1}$ y las funciones de escala y wavelet
    \begin{equation}
 <A_{j-1}(t),\psi _{j,k}(t)>=<A_{j}(t)+D_{j},\psi _{j,k}(t)>
 \end{equation}
@@ -161,21 +237,25 @@ d^{j}_{k}= <A_{j}(t), \psi _{j,k}(t)>
   \end{frame}
   
   \begin{frame}
-  A su ves sabemos que 
+  A su ves sabemos que:
+  
   \begin{equation}
   A_{j-1}(t)=\sum_{k \in \mathbb{Z}} a^{j-1}_{k} \phi^{j-1}_{k}(t)
   \end{equation}
-  con lo que obtenemos que 
+  
+  con lo que obtenemos que: 
+  
   \begin{equation}
   a^{j}_{k}=\sum_{p \in \mathbb{Z}} a^{j-1}_{p} <\phi_{j-1,p},\phi_{j,k}>
   \end{equation}
+  
   \begin{equation}
   d^{j}_{k}=\sum_{p \in \mathbb{Z}} a^{j-1}_{p} <\phi_{j-1,p},\psi_{j,k}>
   \end{equation}
   \end{frame}
   
   \begin{frame}
-  Pero tanto los productos internos de $<\phi_{j-1,p},\phi_{j,k}>$ $<\phi_{j-1,p},\psi_{j,k}>$, son productos internos de funciones conocidas que ya fueron calculadas por lo cual podríamos tomarlo como coeficientes conocidos mas aun como coeficientes de filtros.
+  Pero tanto los productos internos de $<\phi_{j-1,p},\phi_{j,k}>$ $<\phi_{j-1,p},\psi_{j,k}>$, son productos internos de funciones conocidas que ya fueron calculadas por lo cual podríamos tomarlo como coeficientes conocidos más aún como coeficientes de filtros.
   
 \begin{equation}
 	\sqrt{2} a_{p-2k}=<\phi _{j-1,p}(t),\phi _{j,k}(t)>
@@ -209,7 +289,8 @@ d^{j}_{k}=\sum_{p \in \mathbb Z} a^{j-1}_{p} [HD]_{2k-p}
 
 \end{frame}
 \begin{frame}
-Graficamente lo visualizamos
+Gráficamente lo visualizamos
+
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=.75\textwidth]{imgs/bancofiltros1D}
@@ -218,7 +299,7 @@ Graficamente lo visualizamos
 \end{figure}
 \end{frame}
 \begin{frame}
-Para el caso que nosotros estudiamos, de imágenes, la descomposición en 2D, ve como un doble filtrado
+Para el caso de imágenes, la descomposición en 2D se ve como un doble filtrado
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.75\textwidth]{imgs/bancofiltros}
@@ -250,7 +331,7 @@ Es posible realizar el proceso inverso y recuperar la señal original
 
 \begin{frame}
   \frametitle{Umbralización}
-Algortimos para el cálculo del umbral $\tau$:
+Algoritmos para el cálculo del umbral $\tau$:
 \begin{itemize}
   \item VisuShrink
   \item LevelShrink
@@ -265,16 +346,16 @@ Algortimos para el cálculo del umbral $\tau$:
 
 
 
-  \section{Implementacion}
+  \section{Implementación}
 
   \begin{frame}
-    \frametitle{Pseudocodigo parametros optimos}
+    \frametitle{Pseudocódigo parámetros óptimos}
   
     \begin{itemize}
-      \item Leer todas las imagenes de una carpeta.
+      \item Leer todas las imágenes de una carpeta y normalizar sus valores entre 0 y 1.
       \item Agregar ruido gaussiano con $\mu=0$ y varianza $\sigma$.
-      \item Seleccionar el parametro a variar, y dejar constante el resto de parametros.
-      \item Transfromar la imagen utilizando la trasnformada de Wavelet.
+      \item Seleccionar el parámetro a variar, y dejar constante el resto de parámetros.
+      \item Transformar la imagen utilizando la transformada de wavelet.
       \item Calcular los umbrales para cada nivel segun el umbral seleccionado.
       \item Aplicar el modo (soft - hard) y eliminar las componentes menores al umbral.
       \item Aplicar la antitransformada.
@@ -283,27 +364,32 @@ Algortimos para el cálculo del umbral $\tau$:
   
   \end{frame}
 
-
-  
-
-
-
-
-
-
   \section{Resultados}
 
-  \subsection{Imagenes de prueba}
+  \subsection{Imágenes de prueba}
 
   \begin{frame}
-  
-    Imagenes con ruido gaussiano con $\sigma=0.3$
+    \frametitle{ Lenna - $\sigma=0.3$ }
+    \centering
+    \includegraphics[width=5cm]{imgs/Noise/Lenna.jpg}
   \end{frame}
 
-  \subsection{Parametros optimos}
+  \begin{frame}
+    \frametitle{ House - $\sigma=0.3$ }  
+    \centering
+    \includegraphics[width=5cm]{imgs/Noise/House.jpg}
+  \end{frame}
 
   \begin{frame}
-    \frametitle{ Comparacion de Niveles }
+    \frametitle{ Wave - $\sigma=0.3$ }
+    \centering
+    \includegraphics[width=5cm]{imgs/Noise/Wave.jpg}
+  \end{frame}
+
+  \subsection{Parámetros óptimos}
+
+  \begin{frame}
+    \frametitle{ Comparación de Niveles }
     \centering
     \begin{tabular}{lrrrrr}
       \toprule
@@ -327,7 +413,7 @@ Algortimos para el cálculo del umbral $\tau$:
   \end{frame}
 
   \begin{frame}
-    \frametitle{ Comparacion de Niveles }
+    \frametitle{ Comparación de Niveles }
     \centering
     \includegraphics[width=3.5cm]{imgs/Levels/1_normal_soft_sym8_Lenna.jpg}
     \spaced
@@ -348,7 +434,7 @@ Algortimos para el cálculo del umbral $\tau$:
   \end{frame}
 
   \begin{frame}
-    \frametitle{ Comparacion de modos }
+    \frametitle{ Comparación de modos }
     \centering
     \begin{tabular}{lrrr}
       \toprule
@@ -371,7 +457,7 @@ Algortimos para el cálculo del umbral $\tau$:
   \end{frame}
 
   \begin{frame}
-    \frametitle{ Comparacion de modos }
+    \frametitle{ Comparación de modos }
     \centering
     \includegraphics[width=5cm]{imgs/Modes/2_normal_soft_sym8_Wave.jpg}
     \includegraphics[width=5cm]{imgs/Modes/2_normal_hard_sym8_Wave.jpg}
@@ -379,7 +465,7 @@ Algortimos para el cálculo del umbral $\tau$:
   \end{frame}
 
   \begin{frame}
-    \frametitle{ Comparacion de umbrales }
+    \frametitle{ Comparación de umbrales }
     \centering
     \begin{tabular}{lrrrrrr}
       \toprule
@@ -404,7 +490,7 @@ Algortimos para el cálculo del umbral $\tau$:
   \end{frame}
 
   \begin{frame}
-    \frametitle{ Comparacion de umbrales }
+    \frametitle{ Comparación de umbrales }
   
     \centering
     \includegraphics[width=3cm]{imgs/Thresholds/2_awt_soft_sym8_House.jpg}
@@ -418,7 +504,7 @@ Algortimos para el cálculo del umbral $\tau$:
   \end{frame}
 
   \begin{frame}
-    \frametitle{Comparacion de la Wavelet madre}
+    \frametitle{Comparación de la wavelet madre}
     \centering
     \begin{tabular}{lrrrr}
       \toprule
@@ -441,7 +527,7 @@ Algortimos para el cálculo del umbral $\tau$:
   \end{frame}
 
   \begin{frame}
-    \frametitle{Comparacion de la Wavelet madre - db4}
+    \frametitle{Comparación de la wavelet madre - db4}
     
     \centering
     \includegraphics[width=6cm]{imgs/Wavelets/2_normal_soft_db4_Lenna.jpg}
@@ -450,7 +536,7 @@ Algortimos para el cálculo del umbral $\tau$:
   \end{frame}
 
   \begin{frame}
-    \frametitle{Comparacion de la Wavelet madre - haar}
+    \frametitle{Comparación de la wavelet madre - haar}
     
     \centering
     
@@ -461,7 +547,7 @@ Algortimos para el cálculo del umbral $\tau$:
   \end{frame}
 
   \begin{frame}
-    \frametitle{Comparacion de la Wavelet madre - sym8}
+    \frametitle{Comparación de la wavelet madre - sym8}
     
     \centering
     
@@ -472,7 +558,7 @@ Algortimos para el cálculo del umbral $\tau$:
   \end{frame}
 
   \begin{frame}
-    \frametitle{Parametros optimos}
+    \frametitle{Parámetros óptimos}
     \centering
     \begin{tabular}{llll}
       \toprule
@@ -484,7 +570,7 @@ Algortimos para el cálculo del umbral $\tau$:
   
   \end{frame}
 
-  \subsection{Comparacion de filtros}
+  \subsection{Comparación de filtros}
 
   \begin{frame}
     \frametitle{Resultado del filtrado}
@@ -535,7 +621,7 @@ Algortimos para el cálculo del umbral $\tau$:
   
   \end{frame}
 
-  \subsection{Imagenes reales}
+  \subsection{Imágenes reales}
 
   \begin{frame}
     \frametitle{Principe de gales - 1925}
@@ -546,7 +632,7 @@ Algortimos para el cálculo del umbral $\tau$:
   \end{frame}
 
   \begin{frame}
-    \frametitle{Resonancia magnetica}
+    \frametitle{Resonancia magnética}
     \centering
     \includegraphics[width=5cm]{imgs/Real-resize/0.jpg}
     \includegraphics[width=5cm]{imgs/Real/0.jpg}  

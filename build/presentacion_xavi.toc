@@ -1,0 +1,13 @@
+\babel@toc {spanish}{}
+\beamer@sectionintoc {1}{Resumen}{3}{0}{1}
+\beamer@sectionintoc {2}{Introducción}{4}{0}{2}
+\beamer@sectionintoc {3}{Marco Teórico}{11}{0}{3}
+\beamer@subsectionintoc {3}{1}{Análisis multiresolución}{11}{0}{3}
+\beamer@subsectionintoc {3}{2}{Banco de filtros}{14}{0}{3}
+\beamer@subsectionintoc {3}{3}{Umbralización}{23}{0}{3}
+\beamer@sectionintoc {4}{Implementación}{25}{0}{4}
+\beamer@sectionintoc {5}{Resultados}{26}{0}{5}
+\beamer@subsectionintoc {5}{1}{Imágenes de prueba}{26}{0}{5}
+\beamer@subsectionintoc {5}{2}{Parámetros óptimos}{29}{0}{5}
+\beamer@subsectionintoc {5}{3}{Comparación de filtros}{41}{0}{5}
+\beamer@subsectionintoc {5}{4}{Imágenes reales}{45}{0}{5}
